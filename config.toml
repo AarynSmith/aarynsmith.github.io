@@ -7,8 +7,8 @@ pygmentsStyle = "trac"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
-#disqusShortname = "aarynsmith-github-io"
-googleAnalytics = "UA-117169357-1"
+disqusShortname = "aarynsmith-gitlab-io"
+googleAnalytics = "UA-120375015-1"
 
 [Params]
   subtitle = "Developer / Sysadmin / Jack of all trades"
