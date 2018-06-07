@@ -1,9 +1,9 @@
 ---
 title: "Project Euler 7 - 9"
 subtitle: Solving problems 7, 8, and 9 for Project Euler
-date: 2018-06-05
+date: 2018-06-07
 tags: ["python", "euler"]
-draft: true
+draft: false
 comments: true
 ---
 
@@ -95,4 +95,28 @@ Running this gives us the example output of 5832, and if we update the `adjNum` 
 
 ## Problem 9
 
+Problem 9 gives us an example of a pythagorean triplet below:
 
+$$ a^2 + b^2 = c^2$$
+$$\text{where:  } a < b < c $$
+
+We are then asked for the product of a * b * c where a + b + c = 1000.
+
+We can start with a couple of nested for loops, one (`b`) going to our limit, for the examle we'll use a sum of 15 to include the given numbers of 12, and a second for loop (`a`) that limits at the previous to prevent a from being greater than b. We can then calculate `c` using `(a**2 + b**2)**.5`.
+
+```python
+limit = 12
+for b in range(1, limit):
+    for a in range(1, b):
+        c = (a**2+b**2)**.5
+        if int(c) == c and a + b + c == limit:
+            print(int(a*b*c))
+```
+
+Running this gives us our example 60 (3 * 4 * 5), changing our limit to 1000 gives us the answer below:
+
+{{< spoiler 31875000 >}}
+
+## Conclusion
+
+That wraps up the third set of three problems from Project Euler. If you have any questions, please feel free to leave a comment below.
