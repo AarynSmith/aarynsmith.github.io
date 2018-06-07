@@ -180,6 +180,6 @@ Here we see the first PATCH request changes user ID 1's name from "User 1" to "U
 
 ## Conclusion
 
-We've expanded on our server adding the ability replace and update users. Woo! we've got a mostly working API now. Next we'll add some tests to our project to verify all our API endpoints perform the way we expect them to work.
+We've expanded on our server adding the ability replace and update users. Woo! We've got a mostly working API now. Next we'll add some tests to our project to verify all our API endpoints perform the way we expect them to work.
 
 Here is a gist of our [main.go](https://gist.github.com/AarynSmith/2f09d3d2eace746e77e96c8f2ecf60c1#file-main-go) from this post.

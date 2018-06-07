@@ -10,7 +10,7 @@ comments: true
 In this post we will look at the first three problems on [Project Euler](projecteuler.net).
 <!--more-->
 
-I originally started solving these problems more than a decade ago to help me learn new programming languages. I originally found the site while learning (read: teaching myself) perl, then re-started for each new language I was learning. I've gone through the first few problems several times whenever I'm learning a new language or just need to brush up one one I haven't used in a while.
+I originally started solving these problems more than a decade ago to help me learn new programming languages. I originally found the site while learning (read: teaching myself) PERL, then re-started for each new language I was learning. I've gone through the first few problems several times whenever I'm learning a new language or just need to brush up one one I haven't used in a while.
 
 In the next few posts in this series, I'll be using Python, but many of the methods I use will work in whatever language you are using.
 

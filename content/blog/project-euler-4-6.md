@@ -14,7 +14,7 @@ The same warning applies to this post as the [first post in this series](/blog/p
 
 ## Problem 4
 
-This problem gives us the example of the largest palindromic number made from the product of two two digit numbers, 99 x 91 = 9009, where a palindromic number is the same read frowards and backwards. The problem then asked is what the largest palindromic number made from the product of two three digit numbers is.
+This problem gives us the example of the largest palindromic number made from the product of two two digit numbers, 99 x 91 = 9009, where a palindromic number is the same read forwards and backwards. The problem then asked is what the largest palindromic number made from the product of two three digit numbers is.
 
 This problem is fairly straight forward first we need to loop through two digit numbers, which can be easily accomplished with the `range(start,end)` function and the reversing can be easily accomplished by converting a number to a string using the `str()` function, and then reversing the string using [extended slice syntax](https://docs.python.org/2/whatsnew/2.3.html#extended-slices), `'string'[::-1]`.
 
