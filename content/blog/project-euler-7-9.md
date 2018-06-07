@@ -3,7 +3,7 @@ title: "Project Euler 7 - 9"
 subtitle: Solving problems 7, 8, and 9 for Project Euler
 date: 2018-06-07
 tags: ["python", "euler"]
-draft: false
+draft: falsed
 comments: true
 ---
 
@@ -14,9 +14,9 @@ The same warning applies to this post as the [first post in this series](/blog/p
 
 ## Problem 7
 
-Problem 7 gives us an example of the first 6 primes, and asks us to find the 10001st prime. We can easily find a way to count primes using a while loop, and verify that an incremented number is by writing a simple primailty test.
+Problem 7 gives us an example of the first 6 primes, and asks us to find the 10001st prime. We can easily find a way to count primes using a while loop, and verify that an incremented number is by writing a simple primality test.
 
-In this example our `isPrime()` function first eleminates 2 and then any even numbers, then use the any function to iterate over a range of 3 to the square root of our number plus 1, incremened by 2s, to get all odd numbers between 3 and the square root of a + 1. `a % x == 0` checks to see if a is divisable by the numbers in the range, and if any are, returns `True`, which is then negated by the not clause.
+In this example our `isPrime()` function first eliminates 2 and then any even numbers, then use the any function to iterate over a range of 3 to the square root of our number plus 1, incremented by 2s, to get all odd numbers between 3 and the square root of a + 1. `a % x == 0` checks to see if a is divisible by the numbers in the range, and if any are, returns `True`, which is then negated by the not clause.
 
 ```python
 def isPrime(a):
@@ -95,14 +95,14 @@ Running this gives us the example output of 5832, and if we update the `adjNum` 
 
 ## Problem 9
 
-Problem 9 gives us an example of a pythagorean triplet below:
+Problem 9 gives us an example of a Pythagorean triplet below:
 
 $$ a^2 + b^2 = c^2$$
 $$\text{where:  } a < b < c $$
 
 We are then asked for the product of a * b * c where a + b + c = 1000.
 
-We can start with a couple of nested for loops, one (`b`) going to our limit, for the examle we'll use a sum of 15 to include the given numbers of 12, and a second for loop (`a`) that limits at the previous to prevent a from being greater than b. We can then calculate `c` using `(a**2 + b**2)**.5`.
+We can start with a couple of nested for loops, one (`b`) going to our limit, for the example we'll use a sum of 15 to include the given numbers of 12, and a second for loop (`a`) that limits at the previous to prevent a from being greater than b. We can then calculate `c` using `(a**2 + b**2)**.5`.
 
 ```python
 limit = 12
