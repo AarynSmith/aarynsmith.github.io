@@ -3,7 +3,7 @@ title: "Advent of Code 2018 Day 1"
 subtitle: ""
 date: 2018-12-01
 tags: ["AdventOfCode", "Go" ]
-draft: fals
+draft: false
 comments: true
 ---
 
@@ -11,7 +11,7 @@ comments: true
 It's that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.
 <!--more-->
 Welcome to [Advent Of Code 2018](https://adventofcode.com/2018/).
-<!--more-->
+ 
 
 [Day 1](https://adventofcode.com/2018/day/1) kicks off with a simple task of reading a list of positive and negitive numbers from an input file.
 
