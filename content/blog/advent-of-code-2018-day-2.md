@@ -30,7 +30,7 @@ func main(){
 	    panic(err)
 	}
 	lines := strings.Split(string(dat), "\n")
-,,,
+    ...
 }
 ```
 
