@@ -10,8 +10,9 @@ comments: true
 
 It's that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.
 <!--more-->
-Welcome to [Advent Of Code 2018](https://adventofcode.com/2018/).
+Welcome to [Advent Of Code 2018](https://adventofcode.com/2018/). You can see all the parts of this series [Here](/tags/adventofcode/).
  
+## Part 1
 
 [Day 1](https://adventofcode.com/2018/day/1) kicks off with a simple task of reading a list of positive and negitive numbers from an input file.
 
@@ -61,7 +62,11 @@ for idx :=0; idx < len(lines); idx +=1 {
 fmt.Printf("Final Freqency Found: %d.", CurrentFreq)
 ```
 
-This will give us the answer to part 1 of the puzzle. The puzzle then goes on to explain that we need to loop over the list, potentially several times, to find the first frequency that we land on twice. In order to accomplish this, we'll need to modify our for loop. Instead of stopping at the last item in the slice, we'll need to loop through the list over and over, reseting our index to 0 when it is the length of lines. 
+This will give us the answer to part 1 of the puzzle. 
+
+## Part 2
+
+The puzzle then goes on to explain that we need to loop over the list, potentially several times, to find the first frequency that we land on twice. In order to accomplish this, we'll need to modify our for loop. Instead of stopping at the last item in the slice, we'll need to loop through the list over and over, reseting our index to 0 when it is the length of lines. 
 
 ```go
 CurrentFreq := 0
@@ -123,5 +128,6 @@ Now we will continually loop through the list of frequency changes, but we'll ne
 	fmt.Printf("Final Frequency Found: %d.", CurrentFreq)
 ```
 
-This will finally result in the final frequency we are looking for. The complete code for this puzzle is available, along with the other days, on my Gitlab repository 
-[https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go](https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go). If you have any questions or comments, please feel free comment below.
+This will finally result in the final frequency we are looking for. The complete code for this puzzle is available, along with the other days, on my Gitlab repository [https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go](https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go). 
+
+If you have any questions or comments, please feel free comment below.
