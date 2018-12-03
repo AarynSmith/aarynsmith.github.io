@@ -3,7 +3,7 @@ title: "Advent of Code 2018 Day 2"
 subtitle: ""
 date: 2018-12-02
 tags: ["AdventOfCode", "Go"]
-draft: true
+draft: false
 comments: true
 ---
 
