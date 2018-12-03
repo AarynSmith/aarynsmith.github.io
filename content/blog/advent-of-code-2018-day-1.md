@@ -26,7 +26,7 @@ import(
 )
 
 func main() {
-	dat, err := ioutil.ReadFile("input/Day1.txt")
+    dat, err := ioutil.ReadFile("Day1.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -124,4 +124,4 @@ Now we will continually loop through the list of frequency changes, but we'll ne
 ```
 
 This will finally result in the final frequency we are looking for. The complete code for this puzzle is available, along with the other days, on my Gitlab repository 
-[https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day1.go](https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day1.go). If you have any questions or comments, please feel free comment below.
+[https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go](https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_1/Day1.go). If you have any questions or comments, please feel free comment below.
