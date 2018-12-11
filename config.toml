@@ -3,10 +3,8 @@ DefaultContentLanguage = "en"
 title = "Aaryn Smith"
 theme = "beautifulhugo"
 metaDataFormat = "yaml"
-pygmentsStyle = "trac"
-pygmentsUseClasses = true
 pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
 disqusShortname = "aarynsmith-gitlab-io"
 googleAnalytics = "UA-120375015-1"
 
@@ -19,7 +17,6 @@ googleAnalytics = "UA-120375015-1"
   rss = true
   comments = false
   readingTime = true
-  useHLJS = true
   socialShare = false
 
 [Author]
