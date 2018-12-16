@@ -110,7 +110,7 @@ Next we'll iterate through both dimensions of the cloth, and count the number of
     for i := range a {
         for j := range a[i]{
             if a[j][i] == -1 {
-                c += 1
+                c++
             }
         }
     }
