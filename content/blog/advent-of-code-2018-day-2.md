@@ -80,10 +80,10 @@ Once we've tallied all the words, we can calculate the "checksum" by multiplying
 Next we need to find from our list of lockers two lockers who's IDs differ by only one letter. For this we'll write a short helper function to compare two words, as well as returning the "combined" locker ID, i.e. concatenating all of the common letters, and removing the letter that doesn't match.
 
 ```go
-func CompareWords(a, b string) (diff int, comb string){
+func compareWords(a, b string) (diff int, comb string){
     for i := 0; i < len(a); i++ {
         if (b[i] != a[i]) {
-            diff += 1
+            diff++
         } else {
             comb = comb + string(a[i])
         }
@@ -100,7 +100,7 @@ From here, we can set up a double for loop to iterate through the list of IDs tw
             if (wordOne == wordTwo || len(wordOne) != len(wordTwo)) {
                 continue
             }
-            diff, comb := CompareWords(wordOne, wordTwo)
+            diff, comb := compareWords(wordOne, wordTwo)
             if (diff < 2) {
                 fmt.Printf("Found Lockers: %s\n", comb)
                 return
