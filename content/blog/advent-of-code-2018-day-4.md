@@ -40,31 +40,31 @@ func main(){
 }
 ```
 
-Next we need to have a way store and sort our entries, since the elves were so helpful to not store them in chronological (or any) order. We'll create a new data struct (LogEntry), which will contain the parsed time of the entry, the raw entry text, the type of entry, the ID of the guard and the sleeping state of the entry. Just for fun, we'll also create a LogType datatype and use some named consts using the iota function.
+Next we need to have a way store and sort our entries, since the elves were so helpful to not store them in chronological (or any) order. We'll create a new data struct (logEntry), which will contain the parsed time of the entry, the raw entry text, the type of entry, the ID of the guard and the sleeping state of the entry. Just for fun, we'll also create a logType datatype and use some named consts using the iota function.
 
 ```go
-type LogType int
+type logType int
 
 const (
-    _ LogType = iota
-    StartShift
-    FallAsleep
-    WakeUp
+    _ logType = iota
+    startShift
+    fallAsleep
+    wakeUp
 )
 
-type LogEntry struct {
+type logEntry struct {
     Time time.Time
     Entry string
-    Type LogType
+    Type logType
     ID int
     State bool
 }
 ```
 
-Now, we'll create a slice of LogEntries, and iterate over the list from the file. For each line, we'll parse the time using time.Parse, and create our LogEntry, filling just the Time and Entry. After sorting we'll be able to fill in the other information.
+Now, we'll create a slice of LogEntries, and iterate over the list from the file. For each line, we'll parse the time using time.Parse, and create our logEntry, filling just the Time and Entry. After sorting we'll be able to fill in the other information.
 
 ```go
-    Log := []LogEntry{}
+    Log := []logEntry{}
     for _, entry := range log {
         if len(entry) < 17 {
             continue
@@ -73,7 +73,7 @@ Now, we'll create a slice of LogEntries, and iterate over the list from the file
         if err != nil {
             panic(err)
         }
-        Log = append(Log, LogEntry{
+        Log = append(Log, logEntry{
             Time: t,
             Entry: entry,
         })
@@ -91,7 +91,7 @@ Next we'll re-read our log entries in order, since the sleep and wake entries do
 ```go
     CurrentGuard := 0
     SleepState := false
-    LogType := LogType(0)
+    LogType := logType(0)
     GuardRegexp := regexp.MustCompile(`Guard #(\d+) begins shift`)
     for i, entry := range Log{
         switch t := entry.Entry[19:24]; t{
@@ -116,31 +116,31 @@ Next we'll re-read our log entries in order, since the sleep and wake entries do
     }
 ```
 
-Next we need a way to track the number of minutes each guard slept, as well as tallying the sleeps by minute. We'll define a new GuardLog struct with a SleepTally integer, and a map of ints for tracking what minutes the guard slept.
+Next we need a way to track the number of minutes each guard slept, as well as tallying the sleeps by minute. We'll define a new guardLog struct with a SleepTally integer, and a map of ints for tracking what minutes the guard slept.
 
 ```go
-type GuardLog struct {
+type guardLog struct {
     minuteTally map[int]int
     sleepTally int
 }
 ```
 
-We'll use this new struct in a map using the guard's ID as the key. Next we'll iterate over our log once again, tracking when the last fall asleep entry was, and when we get a wake up entry we'll either create a new GuardLog, or use an existing GuardLog if we've seen this guard already. We'll use a for loop to increment the by minute tally, then calculate the total amount of time slept. Then we'll store the new (or updated) GuardLog back to our Guards map.
+We'll use this new struct in a map using the guard's ID as the key. Next we'll iterate over our log once again, tracking when the last fall asleep entry was, and when we get a wake up entry we'll either create a new guardLog, or use an existing guardLog if we've seen this guard already. We'll use a for loop to increment the by minute tally, then calculate the total amount of time slept. Then we'll store the new (or updated) guardLog back to our Guards map.
 
 ```go
-    Guards := map[int]GuardLog{}
+    Guards := map[int]guardLog{}
     sleepTimeStart := 0
     for _, entry := range Log {
         if entry.Type == FallAsleep {
             sleepTimeStart = entry.Time.Minute()
         }
         if entry.Type == WakeUp {
-            Gl := GuardLog{    minuteTally: map[int]int{} }
+            Gl := guardLog{    minuteTally: map[int]int{} }
             if _, o := Guards[entry.ID]; o{
                 Gl = Guards[entry.ID]
             }
             for i := sleepTimeStart; i < entry.Time.Minute(); i++ {
-                Gl.minuteTally[i] += 1
+                Gl.minuteTally[i]++
             }
             Gl.sleepTally += entry.Time.Minute() - sleepTimeStart
             Guards[entry.ID] = Gl
