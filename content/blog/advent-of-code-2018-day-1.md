@@ -99,7 +99,7 @@ Now we will continually loop through the list of frequency changes, but we'll ne
 ```go
     CurrentFreq := 0
     FreqMap := map[int]int{};
-    FreqMap[CurrentFreq] += 1
+    FreqMap[CurrentFreq]++
     idx := 0;
     for {
         if len(lines[idx]) == 0 {
@@ -115,7 +115,7 @@ Now we will continually loop through the list of frequency changes, but we'll ne
         NewFreq := CurrentFreq + FreqChange
 
         CurrentFreq = NewFreq
-        FreqMap[CurrentFreq] += 1
+        FreqMap[CurrentFreq]++
         if (FreqMap[CurrentFreq] == 2){
             break
         }
