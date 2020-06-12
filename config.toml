@@ -5,7 +5,7 @@ theme = "beautifulhugo"
 metaDataFormat = "yaml"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
-disqusShortname = "aarynsmith-gitlab-io"
+disqusShortname = "aarynsmith-com"
 
 
 [Params]
