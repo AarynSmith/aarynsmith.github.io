@@ -10,7 +10,7 @@ googleAnalytics = "UA-120375015-1"
 
 [Params]
   subtitle = "Developer / Sysadmin / Jack of all trades"
-#   logo = "img/avatar-icon.png"
+  logo = "img/Gopher.png"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
