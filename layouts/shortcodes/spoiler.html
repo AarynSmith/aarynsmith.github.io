@@ -1,5 +1,6 @@
 <div class="spoiler-block">
-    Spoiler: <span class="spoiler" style="background-color: #404040; color: #404040; -webkit-user-select: all; -moz-user-select: all; -ms-user-select: all; user-select: all;">
-    {{ .Get 0 }}
+    Spoiler: <span onMouseOver="this.style.opacity=100" onMouseOut="this.style.opacity=0" class="spoiler"
+        style="opacity: 0; transition: opacity 0.5s ">
+        {{ .Get 0 }}
     </span>
 </div>
