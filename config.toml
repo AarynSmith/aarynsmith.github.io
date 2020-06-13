@@ -26,7 +26,6 @@ disqusShortname = "aarynsmith-com"
   email = "aarynsmith<AT>gmail<DOT>com"
   github = "AarynSmith"
   gitlab = "aarynsmith"
-  stackoverflow = "users/9608512/aaryn-smith"
 
 [[menu.main]]
     name = "Resume"
