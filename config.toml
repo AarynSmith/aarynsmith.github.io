@@ -10,7 +10,7 @@ disqusShortname = "aarynsmith-com"
 
 [Params]
   subtitle = "Developer / Sysadmin / Jack of all trades"
-  logo = "img/Gopher-BG.png"
+  logo = "img/Gopher.png"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
@@ -18,7 +18,7 @@ disqusShortname = "aarynsmith-com"
   comments = false
   readingTime = true
   socialShare = false
-  quantcast = "p-4fB4sM_5pRWvK"
+
 
 [Author]
   name = "Aaryn Smith"
