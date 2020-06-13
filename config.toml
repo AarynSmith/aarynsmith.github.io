@@ -10,7 +10,7 @@ googleAnalytics = "UA-120375015-1"
 
 [Params]
   subtitle = "Developer / Sysadmin / Jack of all trades"
-  logo = "img/Gopher.png"
+  logo = "img/Gopher-BG.png"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
@@ -28,16 +28,21 @@ googleAnalytics = "UA-120375015-1"
   stackoverflow = "users/9608512/aaryn-smith"
 
 [[menu.main]]
-    name = "Blog"
-    url = "blog/"
-    weight = 2
+    name = "Resume"
+    url = "https://aarynsmith.gitlab.io/"
+    weight = 1
 
 [[menu.main]]
     name = "About"
     url = "pages/about-me/"
-    weight = 1
+    weight = 10
+
+[[menu.main]]
+    name = "Blog"
+    url = "blog/"
+    weight = 20
 
 [[menu.main]]
     name = "Projects"
     url = "projects/"
-    weight = 3
+    weight = 30
