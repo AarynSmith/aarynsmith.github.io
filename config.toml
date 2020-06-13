@@ -5,8 +5,8 @@ theme = "beautifulhugo"
 metaDataFormat = "yaml"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
-disqusShortname = "aarynsmith-gitlab-io"
-googleAnalytics = "UA-120375015-1"
+disqusShortname = "aarynsmith-com"
+
 
 [Params]
   subtitle = "Developer / Sysadmin / Jack of all trades"
@@ -18,6 +18,7 @@ googleAnalytics = "UA-120375015-1"
   comments = false
   readingTime = true
   socialShare = false
+  quantcast = "p-4fB4sM_5pRWvK"
 
 [Author]
   name = "Aaryn Smith"
