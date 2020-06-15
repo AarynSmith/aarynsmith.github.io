@@ -2,9 +2,24 @@
 title: "Go REST API (Part 3)"
 subtitle: More endpoints for REST Server
 date: 2018-04-30
-tags:  ["Go", "REST", "api"]
+
 draft: false
-comments: true
+
+tags:  ["Go", "REST", "api"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 In this post we are going to expand on our REST API server enabling methods for replacing a user using PUT and updating a user using both PATCH.

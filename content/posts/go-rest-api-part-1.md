@@ -2,9 +2,24 @@
 title: "Go REST API (Part 1)"
 subtitle: Building a REST API in Go
 date: 2018-04-22
-tags:  ["Go", "REST", "api"]
+
 draft: false
-comments: true
+
+tags:  ["Go", "REST", "api"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 In this post we are going to learn how to build a REST server in Go.

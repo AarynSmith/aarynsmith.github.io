@@ -2,9 +2,24 @@
 title: "Go REST API (Part 4)"
 subtitle: Testing REST server with Go Test
 date: 2018-05-01
-tags:  ["Go", "REST", "api"]
+
 draft: false
-comments: true
+
+tags:  ["Go", "REST", "api"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 So we've built a working API server, but the only way we've tested the endpoints is by hammering them with `curl`, but why not use Go's built in testing mechanism, `go test`?

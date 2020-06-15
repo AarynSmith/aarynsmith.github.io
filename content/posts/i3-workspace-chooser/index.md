@@ -2,9 +2,24 @@
 title: "I3 Workspace Chooser"
 subtitle: "Creating an workspace chooser for I3"
 date: 2018-05-25
-tags: ["i3wm", "linux", "scripting"]
+
 draft: false
-comments: true
+
+tags: ["i3wm", "linux", "scripting"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: "featured-image.png"
+featuredImagePreview: "preview-image.png"
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: false
 ---
 
 After working with I3 I've got a few window layouts I like for various tasks.
@@ -14,7 +29,9 @@ This script is available on my [Github](https://github.com/AarynSmith/I3-Workspa
 
 I'm a creature of habit, and I like to have my window layouts in a consistent layout. I have one layout for working on this blog, two columns. The first column has VIM, a free terminal, and hugo server, and the second column is a browser window showing a preview of my blog as I update it. Another layout I've been using while writing the [Project Euler](/tags/euler/) posts, which is similar to the blog layout, but one less terminal window on the left, and all of the terminals are pointed to a different directory.
 
-![Screenshot](/img/I3-Workspace-Chooser-Screenshot.png)_Here you can see my blogging layout, as well as my Workspace chooser._
+![Screenshot](featured-image.png)
+
+_Here you can see my blogging layout, as well as my Workspace chooser._
 
 I'm already using [rofi](https://github.com/DaveDavenport/rofi) for a program launcher, so I wanted to use it's dmenu replacement mode to display a list of predefined workspaces, and run a script based on the selection.
 

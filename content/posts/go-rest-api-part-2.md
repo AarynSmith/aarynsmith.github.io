@@ -2,9 +2,24 @@
 title: "Go REST API (Part 2)"
 subtitle: Adding endpoints to a REST server
 date: 2018-04-25
-tags:  ["Go", "REST", "api"]
+
 draft: false
-comments: true
+
+tags:  ["Go", "REST", "api"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 In this post we are going to expand on our REST API server enabling methods for our endpoints, and add the ability to Create and Delete users.

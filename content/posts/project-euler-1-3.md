@@ -2,12 +2,26 @@
 title: "Project Euler 1 - 3"
 subtitle: Solving problems 1, 2 and 3 for Project Euler
 date: 2018-05-14
-tags: ["python", "euler"]
 draft: false
-comments: true
+
+tags: ["python", "euler"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
-In this post we will look at the first three problems on [Project Euler](projecteuler.net).
+In this post we will look at the first three problems on [Project Euler](https://projecteuler.net).
 <!--more-->
 
 I originally started solving these problems more than a decade ago to help me learn new programming languages. I originally found the site while learning (read: teaching myself) PERL, then re-started for each new language I was learning. I've gone through the first few problems several times whenever I'm learning a new language or just need to brush up one one I haven't used in a while.

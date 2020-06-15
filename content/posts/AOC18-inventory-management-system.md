@@ -1,10 +1,24 @@
 ---
-title: "Advent of Code 2018 Day 2"
-subtitle: ""
+title: "AOC18: Inventory Management System"
+subtitle: "Advent of Code 2018 Day 2"
 date: 2018-12-02
-tags: ["AdventOfCode", "Go"]
 draft: false
-comments: true
+
+tags: ["AdventOfCode", "Go"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 It's that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.

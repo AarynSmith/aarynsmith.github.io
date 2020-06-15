@@ -2,12 +2,26 @@
 title: "Project Euler 4 - 6"
 subtitle: Solving problems 4, 5, and 6 for Project Euler
 date: 2018-05-17
-tags: ["python", "euler"]
 draft: false
-comments: true
+
+tags: ["python", "euler"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
-In this post we will look at problems 4, 5, and 6 on [Project Euler](projecteuler.net).
+In this post we will look at problems 4, 5, and 6 on [Project Euler](https://projecteuler.net).
 <!--more-->
 
 The same warning applies to this post as the [first post in this series](/blog/project-euler-1-3/#warning)

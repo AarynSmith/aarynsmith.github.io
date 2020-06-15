@@ -1,10 +1,24 @@
 ---
-title: "Advent of Code 2018 Day 5"
-subtitle: ""
+title: "AOC18: Alchemical Reduction"
+subtitle: "Advent of Code 2018 Day 5"
 date: 2018-12-05
-tags: ["AdventOfCode", "Go"]
 draft: false
-comments: true
+
+tags: ["AdventOfCode", "Go"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 It's that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.

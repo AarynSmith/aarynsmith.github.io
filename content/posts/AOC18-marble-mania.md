@@ -1,10 +1,24 @@
 ---
-title: "Advent of Code 2018 Day 9"
-subtitle: ""
+title: "AOC18: Marble Mania"
+subtitle: "Advent of Code 2018 Day 9"
 date: 2018-12-09
-tags: ["AdventOfCode", "Go"]
 draft: false
-comments: true
+
+tags: ["AdventOfCode", "Go"]
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
 It's that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.

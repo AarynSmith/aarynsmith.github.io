@@ -2,12 +2,26 @@
 title: "Project Euler 7 - 9"
 subtitle: Solving problems 7, 8, and 9 for Project Euler
 date: 2018-06-07
+draft: false
+
 tags: ["python", "euler"]
-draft: falsed
-comments: true
+categories: ["Blog"]
+
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: true
+toc:
+  enable: true
+  auto: false
+math:
+  enable: true
 ---
 
-In this post we will look at problems 7, 8, and 9 on [Project Euler](projecteuler.net).
+In this post we will look at problems 7, 8, and 9 on [Project Euler](https://projecteuler.net).
 <!--more-->
 
 The same warning applies to this post as the [first post in this series](/blog/project-euler-1-3/#warning)
@@ -100,7 +114,7 @@ Problem 9 gives us an example of a Pythagorean triplet below:
 $$ a^2 + b^2 = c^2$$
 $$\text{where:  } a < b < c $$
 
-We are then asked for the product of a * b * c where a + b + c = 1000.
+We are then asked for the product of a \* b \* c where a + b + c = 1000.
 
 We can start with a couple of nested for loops, one (`b`) going to our limit, for the example we'll use a sum of 15 to include the given numbers of 12, and a second for loop (`a`) that limits at the previous to prevent a from being greater than b. We can then calculate `c` using `(a**2 + b**2)**.5`.
 
@@ -113,7 +127,7 @@ for b in range(1, limit):
             print(int(a*b*c))
 ```
 
-Running this gives us our example 60 (3 * 4 * 5), changing our limit to 1000 gives us the answer below:
+Running this gives us our example 60 (3 \* 4 \* 5), changing our limit to 1000 gives us the answer below:
 
 {{< spoiler 31875000 >}}
 
