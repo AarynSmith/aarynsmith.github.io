@@ -1,10 +1,24 @@
 ---
 title: "ztDNS"
-subtitle: ZeroTier DNS server
-date: 2017-06-15T11:11:00-06:00
-tags:  ["Go", "ZeroTier", "DNS"]
+subtitle: "ZeroTier DNS server"
+date: 2017-06-15
 draft: false
-comments: false
+
+tags: []
+categories: ["Projects"]
+
+hiddenFromHomePage: true
+
+featuredImage: ""
+featuredImagePreview: ""
+
+comments:
+  enable: false
+toc:
+  enable: false
+  auto: true
+math:
+  enable: false
 ---
 
 A DNS server for a ZeroTier network (or networks).

@@ -1,6 +1,8 @@
-<div class="spoiler-block">
-    Spoiler: <span onMouseOver="this.style.opacity=100" onMouseOut="this.style.opacity=0" class="spoiler"
-        style="opacity: 0; transition: opacity 0.5s ">
-        {{ .Get 0 }}
+<div>
+    Spoiler:
+    <span class="spoiler-block">
+        <span class="spoiler-text">
+            {{ .Get 0 }}
+        </span>
     </span>
 </div>
