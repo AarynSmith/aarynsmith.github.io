@@ -8,18 +8,21 @@ authorLink: ""
 description: ""
 
 tags: []
-categories: ["Projects"]
+categories: ["Blog"]
 
-hiddenFromHomePage: true
+hiddenFromHomePage: false
 
-featuredImage: "featured-image.png"
-featuredImagePreview: "preview-image.png"
+featuredImage: ""
+featuredImagePreview: ""
 
 comments:
-  enable: false
+  enable: true
 toc:
   enable: false
   auto: true
 math:
   enable: false
+
 ---
+
+<!--more-->
