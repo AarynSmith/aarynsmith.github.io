@@ -28,4 +28,4 @@ ztDNS pulls device names from ZeroTier and makes them available by name using ei
 
 I created this project because I could not find a simple way to host a DNS server for my ZeroTier networks that would serve the names I had defined in the ZeroTier administration interface. I wanted to be able to address the devices on my network by the names I had defined.
 
-The project is available on [GitHub](https://github.com/uxbh/ztdns).
+The project is available on [GitHub](https://github.com/uxbh/ztdns)
