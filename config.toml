@@ -7,7 +7,7 @@ theme = "LoveIt"
   [[menu.main]]
     identifier = "resume"
     name = "Resumé"
-    url = "https://aarynsmith.gitlab.io/"
+    url = "/resume/"
     weight = 1
   [[menu.main]]
     identifier = "about"

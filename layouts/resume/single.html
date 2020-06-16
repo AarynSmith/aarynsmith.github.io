@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Params.DefaultContentLanguage }}">
+
+<head>
+    <title>{{ $.Param "title" }}</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content='{{ $.Param "description" }}'>
+    <meta name="author" content="{{ .Site.Author.name }}">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
+    <!-- Theme SCSS -->
+    {{ $style := resources.Get "scss/devresume.scss" | resources.ExecuteAsTemplate "scss/devresume.scss" . | toCSS (dict "targetPath" "assets/css/devresume.css") | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="container px-3 px-lg-5">
+            <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
+                <div class="resume-header">
+                    <div class="row align-items-center">
+                        {{ if $.Param "profile.enable" }}
+                        <div class="resume-title col-12 col-md-6 col-lg-8 col-xl-9">
+                            <h2 class="resume-name mb-0 text-uppercase">{{ $.Param "profile.name" }}</h2>
+                            <div class="resume-tagline mb-3 mb-md-0">{{ $.Param "profile.tagline" }}</div>
+                        </div>
+                        <!--//resume-title-->
+                        {{ end }}
+                        {{ if $.Param "contact.enable" }}
+                        <div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
+                            <ul class="list-unstyled mb-0">
+                                {{ range $.Param "contact.list" }}
+                                <li class="mb-2"><i class="{{ .icon }} fa-fw fa-lg mr-2"></i><a class="resume-link"
+                                        href="{{ .url | safeURL }}">{{ .text }}</a></li>
+                                {{ end }}
+                                <li class="mb-0"><i
+                                        class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>{{ $.Param "contact.location" }}
+                                </li>
+                            </ul>
+                        </div>
+                        <!--//resume-contact-->
+                        {{ end }}
+                    </div>
+                    <!--//row-->
+                </div>
+                <!--//resume-header-->
+                <hr>
+                {{ if $.Param "sumsect.enable" }}
+                <div class="resume-intro py-3">
+                    <div class="media flex-column flex-md-row align-items-center">
+                        {{ if $.Param "profile.avatar" }}
+                        <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto"
+                            src='{{ .Site.BaseURL }}/{{ $.Param "profile.avatar" }}' alt="image">
+                        {{ end }}
+                        <div class="media-body text-left">
+                            <p class="mb-0">{{ $.Param "sumsect.text" }}</p>
+                        </div>
+                        <!--//media-body-->
+                    </div>
+                </div>
+                {{ end }}
+                <hr>
+                <div class="resume-body">
+                    <div class="row">
+                        <div class="resume-main col-12 col-lg-8 col-xl-9 pr-0 pr-lg-5">
+                            {{ if $.Param "experience.enable" }}
+                            <section class="work-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    Work Experience</h3>
+                                {{ range $.Param "experience.list" }}
+                                <div class="item mb-3">
+                                    <div class="item-heading row align-items-center mb-2">
+                                        <h4 class="item-title col-12 col-md-6 col-lg-6 mb-2 mb-md-0">{{ .title }}</h4>
+                                        <div
+                                            class="item-meta col-12 col-md-6 col-lg-6 text-muted text-left text-md-right">
+                                            {{ .company }} | {{ .dates }}</div>
+                                    </div>
+                                    <div class="item-content">
+                                        <p>{{ with .details }}{{ . | markdownify }}{{ end }}</p>
+                                        <ul class="resume-list">
+                                            {{ range .items }}
+                                            <li>{{ with .details }}{{ . | markdownify }}{{ end }}</li>
+                                            {{ end }}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--//item-->
+                                {{ end }}
+                            </section>
+                            {{ end }}
+                            {{ if $.Param "projects.enable" }}
+                            <section class="project-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
+                                {{ range $.Param "projects.list" }}
+                                <div class="item mb-3">
+                                    <div class="item-heading row align-items-center mb-2">
+                                        <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">{{ .title }}</h4>
+                                        <div
+                                            class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">
+                                            {{ .meta }}</div>
+                                    </div>
+                                    <div class="item-content">
+                                        <p>{{ .tagline }}</p>
+                                    </div>
+                                </div>
+                                <!--//item-->
+                                {{ end }}
+                            </section>
+                            {{ end }}
+                            {{ if $.Param "information.enable" }}
+                            <section class="project-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Information</h3>
+                                {{ range $.Param "information.list" }}
+                                <div class="item mb-3">
+                                    <div class="item-heading row align-items-center mb-2">
+                                        <h4 class="item-title col-12 col-md-12 col-lg-12 mb-2 mb-md-0">{{ .title }}
+                                        </h4>
+                                    </div>
+                                    <div class="item-content">
+                                        <p>{{ with .details }}{{ . | markdownify }}{{ end }}</p>
+                                        <ul class="list-unstyled resume-skills-list">
+                                            {{ range .items }}
+                                            <li class="mb-2">{{ with .details }}{{ . | markdownify }}{{ end }}</li>
+                                            {{ end }}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--//item-->
+                                {{ end }}
+                            </section>
+                            {{ end }}
+                        </div>
+                        <!--//resume-main-->
+
+                        <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
+                            {{ if $.Param "education.enable" }}
+                            <section class="education-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    Education</h3>
+                                <ul class="list-unstyled resume-education-list">
+                                    {{ range $.Param "education.list" }}
+                                    <li class="mb-3">
+                                        <div class="resume-degree font-weight-bold">{{ .degree }}</div>
+                                        <div class="resume-degree-org text-muted">{{ .university }}</div>
+                                        <div class="resume-degree-time text-muted">{{ .dates }}</div>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            {{ end }}
+                            {{ if $.Param "awards.enable" }}
+                            <section class="education-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Awards
+                                </h3>
+                                <ul class="list-unstyled resume-awards-list">
+                                    {{ range $.Param "awards.list" }}
+                                    <li class="mb-3">
+                                        <div class="font-weight-bold">{{ .name }}</div>
+                                        <div class="text-muted">{{ .body }}</div>
+                                        <div class="text-muted">{{ .date }}</div>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            {{ end }}
+                            {{ if $.Param "skills.enable" }}
+                            <section class="skills-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Skills
+                                </h3>
+                                {{ range $.Param "skills.list" }}
+                                <div class="item">
+                                    <h4 class="item-title">{{ .title }}</h4>
+                                    <ul class="list-unstyled resume-skills-list">
+                                        {{ range .items }}
+                                        <li class="mb-2">{{ with .details }}{{ . | markdownify }}{{ end }}
+                                        </li>
+                                        {{ end }}
+                                    </ul>
+                                </div>
+                                <!--//item-->
+                                {{ end }}
+                            </section>
+                            <!--//skills-section-->
+                            {{ end }}
+                            {{ if $.Param "languages.enable" }}
+                            <section class="skills-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    Languages</h3>
+                                <ul class="list-unstyled resume-lang-list">
+                                    {{ range $.Param "languages.list" }}
+                                    <li class="mb-2">{{ .name }} <span class="text-muted">({{ .level }})</span></li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            <!--//certificates-section-->
+                            {{ end }}
+                            {{ if $.Param "interests.enable" }}
+                            <section class="skills-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    Interests</h3>
+                                <ul class="list-unstyled resume-interests-list mb-0">
+                                    {{ range $.Param "interests.list" }}
+                                    <li class="mb-2">{{ .name }}</li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            <!--//certificates-section-->
+                            {{ end }}
+                        </aside>
+                    </div>
+                    <!--//row-->
+                </div>
+                <!--//resume-body-->
+                <hr>
+                {{ if $.Param "social.enable" }}
+                <div class="resume-footer text-center">
+                    <ul class="resume-social-list list-inline mx-auto mb-0 d-inline-block text-muted">
+                        {{ range $.Param "social.list" }}
+                        <li class="list-inline-item mb-lg-0 mr-3">
+                            <a class="resume-link" href="{{ .url }}" target="_blank">
+                                <i class="{{ .icon }} fa-2x mr-2" data-fa-transform="down-4"></i>
+                                <span class="d-none d-lg-inline-block text-muted">{{ .title }}</span>
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                <!--//resume-footer-->
+                {{ end }}
+            </article>
+        </div>
+        <!--//container-->
+
+        <footer class="footer text-center py-4">
+            <!--/*
+                This template is released under the Creative Commons Attribution 3.0 License.
+                Please keep the attribution link below when using for your own project.
+                Thank you for your support. :)
+                If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com
+            */-->
+            <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link"
+                    href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+            <br>
+            <small class="copyright">{{ now.Year }} &copy;
+                {{ with $.Param "footer.copyright"  }}{{ . | markdownify }}{{ else }}Ported to Hugo by <a
+                    href="https://github.com/cowboysmall" target="_blank">CowboySmall</a>{{ end }}</small>
+        </footer>
+    </div>
+    <!--//main-wrapper-->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+        integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
