@@ -121,7 +121,7 @@ RUN apk add --update --no-cache ca-certificates openssl git curl && \
     muslstack -s 0x800000 /usr/bin/hugo
 ```
 
-The second stage uses alpine:edge and copies over the hugo binary, installs libstdc++ sudo and git, and sets up the vscode user, group and sudo access.
+The second stage uses alpine:edge and copies over the hugo binary, installs libc, libstdc++, sudo, git, and openssh-client and sets up the vscode user, group and sudo access.
 
 ```dockerfile
 FROM alpine:edge
@@ -130,7 +130,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 COPY --from=0 /usr/bin/hugo /usr/bin
-RUN apk add --update --no-cache libc6-compat libstdc++ sudo git &&\
+RUN apk add --update --no-cache libc6-compat libstdc++ sudo git openssh-client &&\
     rm -rf /var/cache/apk/*
 RUN addgroup -g ${USER_GID} ${USERNAME} && \
     adduser -s /bin/ash -u ${USER_UID} -D -G ${USERNAME} ${USERNAME} && \
