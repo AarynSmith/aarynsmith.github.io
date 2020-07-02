@@ -3,7 +3,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
-			// Update 'VARIANT' to pick hugo varient. 
+			// Update 'VARIANT' to pick hugo variant. 
 			// Example variants: hugo, hugo_extended
 			// Rebuild the container if it already exists to update.
 			"VARIANT": "hugo",
