@@ -1,40 +1,39 @@
 FROM golang:1.13-alpine
 
-ARG HUGO=hugo_extended
-ARG HUGO_VERSION=0.73.0
-ARG HUGO_SHA=7238b1b39d50667190020c93370bb2727d9097226cb3147c982d4d40004da09f
-ARG HUGO_EXTENDED_SHA=dd7ea5d7f9d2a512359fcd51f94a2e5c7ab34d1a325dbf3ea675bc5c7f5082f3
+# VARIANT can be either 'hugo' for the standard version or 'hugo_extended' for the extended version.
+ARG VARIANT=hugo_extended
+# VERSION can be either 'latest' or a specific version number
+ARG VERSION=latest
 
-RUN set -eux && \
-    case ${HUGO} in \
-    *_extended) \
-    HUGO_SHA="${HUGO_EXTENDED_SHA}" ;; \
+RUN apk add --update --no-cache ca-certificates openssl git curl && \
+    env && \
+    case ${VERSION} in \
+    latest) \
+    echo "Getting latest version tag" && export VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4)}') ;;\
     esac && \
-    apk add --update --no-cache ca-certificates openssl git && \
-    wget -O ${HUGO_VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO}_${HUGO_VERSION}_Linux-64bit.tar.gz && \
-    echo "${HUGO_SHA}  ${HUGO_VERSION}.tar.gz" | sha256sum -c && \
-    tar xf ${HUGO_VERSION}.tar.gz && mv hugo* /usr/bin/hugo
-RUN go get github.com/yaegashi/muslstack
-RUN muslstack -s 0x800000 /usr/bin/hugo
+    echo ${VERSION} && \
+    wget -O ${VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${VERSION}/${VARIANT}_${VERSION}_Linux-64bit.tar.gz && \
+    tar xf ${VERSION}.tar.gz && \
+    mv hugo* /usr/bin/hugo && \
+    go get github.com/yaegashi/muslstack && \
+    muslstack -s 0x800000 /usr/bin/hugo
 
 FROM alpine:edge
-ARG HUGO=hugo_extended
+# This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
+# property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
+# will be updated to match your local UID/GID (when using the dockerFile property).
+# See https://aka.ms/vscode-remote/containers/non-root-user for details.
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 COPY --from=0 /usr/bin/hugo /usr/bin
-RUN set -eux && \
-    case ${HUGO} in \
-    *_extended) \
-    apk add --update --no-cache libc6-compat libstdc++ sudo git openssh-client less &&\
-    rm -rf /var/cache/apk/* ;; \
-    esac && \
-    hugo version \
-    && addgroup -g ${USER_GID} ${USERNAME}\
-    && adduser -s /bin/ash -u ${USER_UID} -D -G ${USERNAME} ${USERNAME} \
-    && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}\
-    && chmod 0440 /etc/sudoers.d/${USERNAME}
+RUN apk add --update --no-cache libc6-compat libstdc++ sudo git &&\
+    rm -rf /var/cache/apk/*
+RUN addgroup -g ${USER_GID} ${USERNAME} && \
+    adduser -s /bin/ash -u ${USER_UID} -D -G ${USERNAME} ${USERNAME} && \
+    echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}&& \
+    chmod 0440 /etc/sudoers.d/${USERNAME}
 EXPOSE 1313
 WORKDIR /src
 CMD ["/usr/bin/hugo server"]
