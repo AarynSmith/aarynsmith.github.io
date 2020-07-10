@@ -2,6 +2,7 @@
 title: "Hugo + VSCode + Docker = ❤️"
 subtitle: "Setting up a devcontainer for VSCode to run Hugo"
 date: 2020-06-30
+lastMod: 2020-07-10
 draft: false
 author: ""
 authorLink: ""
@@ -27,6 +28,12 @@ math:
 
 In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.
 <!--more-->
+
+## Updates (20200710)
+
+My pull request was accepted (Thanks [Chuck](https://github.com/Chuxel)!) and since then I've also created containers for [bash script debugging](https://github.com/AarynSmith/vscode-dev-container-bash) and [Vue.js development](https://github.com/AarynSmith/vscode-dev-container-vue) have also been merged, and should be available soon. To use these, open a folder in VSCode, open your Command Palette, and choose "Remote-Containers: Add Development Container Configuration Files". From here you can choose "Show all Definitions..." and search through all available definitions.
+
+## Introduction
 
 VSCode recently added a Remote extension to develop inside docker containers, called [Visual Studio Code Remote - Containers](https://code.visualstudio.com/blogs/2019/05/02/remote-development). I took inspiration from my Hugo setup with gitlab pages to automatically build a static version of my site whenever I push to the repository, and saw an existing Jekyll remote container configuration, and thought, why not roll my own Hugo remote container.
 
@@ -216,6 +223,10 @@ The .vscode/tasks.json file contains some helpful tasks for interacting with hug
 ```
 
 These tasks can be run from the Command Palette using the "Run Test Task" and "Run Build Task" respectively.
+
+## Update
+
+After making my pull request Chuck Lantz made some suggestions for improvements. I switched the second stage of the dockerfile to use a more common (to remote containers) image: `mcr.microsoft.com/vscode/devcontainers/base:alpine`, which allowed me to set the default shell to zsh. I also added a Better-TOML to the default extensions.
 
 ## Conclusion
 
