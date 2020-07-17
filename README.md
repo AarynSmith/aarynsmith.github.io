@@ -9,5 +9,5 @@ This is my website. Originally started on GitHub, and now transferred to GitLab.
 Make sure you get the theme by cloning submodules:
 
 ```bash
-git submodules update --init --recursive
+git submodule update --init --recursive
 ```
