@@ -1,8 +1,13 @@
 {
 	"cSpell.words": [
+		"Anson's",
+		"Iwasaki's",
+		"Lastmod",
+		"NOPASSWD",
+		"Shuzo",
+		"WORKDIR",
 		"addgroup",
 		"adduser",
-		"Anson's",
 		"chmod",
 		"compat",
 		"davidanson",
@@ -10,21 +15,19 @@
 		"dockerize",
 		"esac",
 		"groupadd",
-		"Iwasaki's",
 		"libc",
 		"libstdc",
 		"markdownlint",
 		"muslstack",
-		"NOPASSWD",
 		"openssh",
 		"openssl",
+		"peaceiris",
 		"shuworks",
-		"Shuzo",
 		"streetsidesoftware",
+		"submodules",
 		"substr",
 		"sudoers",
 		"useradd",
-		"WORKDIR",
 		"yaegashi"
 	]
 }
