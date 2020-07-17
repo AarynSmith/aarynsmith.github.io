@@ -1,0 +1,127 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Project Euler 7 - 9 - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Project Euler 7 - 9"><meta property="og:description" content="In this post we will look at problems 7, 8, and 9 on Project Euler."><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/project-euler-7-9/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:published_time" content="2018-06-07T00:00:00+00:00"><meta property="article:modified_time" content="2018-06-07T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/logo.png"><meta name=twitter:title content="Project Euler 7 - 9"><meta name=twitter:description content="In this post we will look at problems 7, 8, and 9 on Project Euler."><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/project-euler-7-9/><link rel=prev href=https://aarynsmith.com/posts/i3-workspace-chooser/><link rel=next href=https://aarynsmith.com/posts/aoc18-chronal-calibration/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Project Euler 7 - 9","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/project-euler-7-9\/"},"genre":"posts","keywords":"python, euler","wordcount":799,"url":"https:\/\/aarynsmith.com\/posts\/project-euler-7-9\/","datePublished":"2018-06-07T00:00:00+00:00","dateModified":"2018-06-07T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/>Resumé</a><a class=menu-item href=/pages/about-me>About</a><a class=menu-item href=/posts/>Blog</a><a class=menu-item href=/projects/>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Project Euler 7 - 9</h1><h2 class=single-subtitle>Solving problems 7, 8, and 9 for Project Euler</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-06-07>2018-06-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;799 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#problem-7>Problem 7</a></li><li><a href=#problem-8>Problem 8</a></li><li><a href=#problem-9>Problem 9</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div><div class=content id=content><p>In this post we will look at problems 7, 8, and 9 on <a href=https://projecteuler.net target=_blank rel="noopener noreffer">Project Euler</a>.</p><p>The same warning applies to this post as the <a href=/blog/project-euler-1-3/#warning rel>first post in this series</a></p><h2 id=problem-7>Problem 7</h2><p>Problem 7 gives us an example of the first 6 primes, and asks us to find the 10001st prime. We can easily find a way to count primes using a while loop, and verify that an incremented number is by writing a simple primality test.</p><p>In this example our <code>isPrime()</code> function first eliminates 2 and then any even numbers, then use the any function to iterate over a range of 3 to the square root of our number plus 1, incremented by 2s, to get all odd numbers between 3 and the square root of a + 1. <code>a % x == 0</code> checks to see if a is divisible by the numbers in the range, and if any are, returns <code>True</code>, which is then negated by the not clause.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>isPrime</span><span class=p>(</span><span class=n>a</span><span class=p>):</span>
+    <span class=k>if</span> <span class=n>a</span> <span class=o>==</span> <span class=mi>2</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>True</span>
+    <span class=k>if</span> <span class=n>a</span> <span class=o>&lt;</span> <span class=mi>2</span> <span class=ow>or</span> <span class=n>a</span> <span class=o>%</span> <span class=mi>2</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=k>return</span> <span class=bp>False</span>
+    <span class=k>return</span> <span class=ow>not</span> <span class=nb>any</span><span class=p>(</span><span class=n>a</span> <span class=o>%</span> <span class=n>x</span> <span class=o>==</span> <span class=mi>0</span> <span class=k>for</span> <span class=n>x</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=n>a</span><span class=o>**</span><span class=mf>0.5</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span>
+
+
+<span class=n>PrimeCount</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=n>i</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=k>while</span> <span class=n>PrimeCount</span> <span class=o>&lt;</span> <span class=mi>6</span><span class=p>:</span>
+    <span class=n>i</span> <span class=o>+=</span> <span class=mi>1</span>
+    <span class=k>if</span> <span class=n>isPrime</span><span class=p>(</span><span class=n>i</span><span class=p>):</span>
+        <span class=n>PrimeCount</span> <span class=o>+=</span> <span class=mi>1</span>
+
+<span class=k>print</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>This gives us our example of 13, and if we modify the while loop to be 10001 instead of 6 we get the following solution:</p><div>Spoiler:
+<span class=spoiler-block><span class=spoiler-text>104743</span></span></div><h2 id=problem-8>Problem 8</h2><p>Problem 9 gives us a 1000 digit number and tells us the greatest product of 4 adjacent digits is 5832 (9 x 9 x 8 x 9). Our task is to find the greatest product of 13 adjacent cells.</p><p>While this is technically a 1000 digit number, that does not necessarily mean we have to treat it as a number. In this case it would be easier to treat it as a string, and then iterate over our characters (digits) to find our adjacent numbers.</p><p>First we&rsquo;ll set up a short function that will multiply the digits in a string together and return the product. Next we&rsquo;ll have to create a variable with our 1000 digit number in it with a series of concatenations via the <code>+=</code> operator. Next we&rsquo;ll setup a for loop that will give us an index up to the end of the string, excluding the length of adjacent number of digits we are looking for (to prevent reading past the end of our string). We can then feed a slice of our string into our <code>AdjProduct()</code> function and track the maximum result.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>AdjProduct</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+    <span class=n>prod</span> <span class=o>=</span> <span class=mi>1</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>n</span><span class=p>:</span>
+        <span class=n>prod</span> <span class=o>*=</span> <span class=nb>int</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+
+    <span class=k>return</span> <span class=n>prod</span>
+
+
+<span class=n>BigNum</span> <span class=o>=</span> <span class=s2>&#34;73167176531330624919225119674426574742355349194934&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;96983520312774506326239578318016984801869478851843&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;85861560789112949495459501737958331952853208805511&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;12540698747158523863050715693290963295227443043557&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;66896648950445244523161731856403098711121722383113&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;62229893423380308135336276614282806444486645238749&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;30358907296290491560440772390713810515859307960866&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;70172427121883998797908792274921901699720888093776&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;65727333001053367881220235421809751254540594752243&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;52584907711670556013604839586446706324415722155397&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;53697817977846174064955149290862569321978468622482&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;83972241375657056057490261407972968652414535100474&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;82166370484403199890008895243450658541227588666881&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;16427171479924442928230863465674813919123162824586&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;17866458359124566529476545682848912883142607690042&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;24219022671055626321111109370544217506941658960408&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;07198403850962455444362981230987879927244284909188&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;84580156166097919133875499200524063689912560717606&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;05886116467109405077541002256983155200055935729725&#34;</span>
+<span class=n>BigNum</span> <span class=o>+=</span> <span class=s2>&#34;71636269561882670428252483600823257530420752963450&#34;</span>
+
+<span class=n>adjNum</span> <span class=o>=</span> <span class=mi>4</span>
+<span class=nb>max</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>BigNum</span><span class=p>)</span> <span class=o>-</span> <span class=n>adjNum</span> <span class=o>+</span> <span class=mi>1</span><span class=p>):</span>
+    <span class=n>m</span> <span class=o>=</span> <span class=n>AdjProduct</span><span class=p>(</span><span class=n>BigNum</span><span class=p>[</span><span class=n>i</span><span class=p>:</span><span class=n>i</span><span class=o>+</span><span class=n>adjNum</span><span class=p>])</span>
+    <span class=k>if</span> <span class=n>m</span> <span class=o>&gt;</span> <span class=nb>max</span><span class=p>:</span>
+        <span class=nb>max</span> <span class=o>=</span> <span class=n>m</span>
+
+<span class=k>print</span><span class=p>(</span><span class=nb>max</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>Running this gives us the example output of 5832, and if we update the <code>adjNum</code> to 13 we get the following result:</p><div>Spoiler:
+<span class=spoiler-block><span class=spoiler-text>23514624000</span></span></div><h2 id=problem-9>Problem 9</h2><p>Problem 9 gives us an example of a Pythagorean triplet below:</p><p>$$ a^2 + b^2 = c^2$$
+$$\text{where: } a &lt; b &lt; c $$</p><p>We are then asked for the product of a * b * c where a + b + c = 1000.</p><p>We can start with a couple of nested for loops, one (<code>b</code>) going to our limit, for the example we&rsquo;ll use a sum of 15 to include the given numbers of 12, and a second for loop (<code>a</code>) that limits at the previous to prevent a from being greater than b. We can then calculate <code>c</code> using <code>(a**2 + b**2)**.5</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>limit</span> <span class=o>=</span> <span class=mi>12</span>
+<span class=k>for</span> <span class=n>b</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>limit</span><span class=p>):</span>
+    <span class=k>for</span> <span class=n>a</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>b</span><span class=p>):</span>
+        <span class=n>c</span> <span class=o>=</span> <span class=p>(</span><span class=n>a</span><span class=o>**</span><span class=mi>2</span><span class=o>+</span><span class=n>b</span><span class=o>**</span><span class=mi>2</span><span class=p>)</span><span class=o>**.</span><span class=mi>5</span>
+        <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>c</span><span class=p>)</span> <span class=o>==</span> <span class=n>c</span> <span class=ow>and</span> <span class=n>a</span> <span class=o>+</span> <span class=n>b</span> <span class=o>+</span> <span class=n>c</span> <span class=o>==</span> <span class=n>limit</span><span class=p>:</span>
+            <span class=k>print</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>a</span><span class=o>*</span><span class=n>b</span><span class=o>*</span><span class=n>c</span><span class=p>))</span>
+</code></pre></td></tr></table></div></div><p>Running this gives us our example 60 (3 * 4 * 5), changing our limit to 1000 gives us the answer below:</p><div>Spoiler:
+<span class=spoiler-block><span class=spoiler-text>31875000</span></span></div><h2 id=conclusion>Conclusion</h2><p>That wraps up the third set of three problems from Project Euler. If you have any questions, please feel free to leave a comment below.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2018-06-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/python/>python</a>,&nbsp;<a href=/tags/euler/>euler</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/i3-workspace-chooser/ class=prev rel=prev title="I3 Workspace Chooser"><i class="fas fa-angle-left fa-fw"></i>I3 Workspace Chooser</a>
+<a href=/posts/aoc18-chronal-calibration/ class=next rel=next title="AOC18: Chronal Calibration">AOC18: Chronal Calibration<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"},{"display":false,"left":"$","right":"$"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

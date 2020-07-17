@@ -1,0 +1,161 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Go REST API (Part 2) - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Go REST API (Part 2)"><meta property="og:description" content="In this post we are going to expand on our REST API server enabling methods for our endpoints, and add the ability to Create and Delete users."><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/go-rest-api-part-2/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:published_time" content="2018-04-25T00:00:00+00:00"><meta property="article:modified_time" content="2018-04-25T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/logo.png"><meta name=twitter:title content="Go REST API (Part 2)"><meta name=twitter:description content="In this post we are going to expand on our REST API server enabling methods for our endpoints, and add the ability to Create and Delete users."><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/go-rest-api-part-2/><link rel=prev href=https://aarynsmith.com/posts/go-rest-api-part-1/><link rel=next href=https://aarynsmith.com/posts/go-rest-api-part-3/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go REST API (Part 2)","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-2\/"},"genre":"posts","keywords":"Go, REST, api","wordcount":682,"url":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-2\/","datePublished":"2018-04-25T00:00:00+00:00","dateModified":"2018-04-25T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/>Resumé</a><a class=menu-item href=/pages/about-me>About</a><a class=menu-item href=/posts/>Blog</a><a class=menu-item href=/projects/>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Go REST API (Part 2)</h1><h2 class=single-subtitle>Adding endpoints to a REST server</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-04-25>2018-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;682 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#methods-for-endpoints>Methods for Endpoints</a></li><li><a href=#creating-users>Creating users</a></li><li><a href=#deleting-users>Deleting Users</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div><div class=content id=content><p>In this post we are going to expand on our REST API server enabling methods for our endpoints, and add the ability to Create and Delete users.</p><h2 id=methods-for-endpoints>Methods for Endpoints</h2><p>Now that we have a way to retrieve our user, we should restrict it to just the GET method. To do this we&rsquo;ll use the <code>mux.Router.Methods</code> function. This takes a list of methods we want this endpoint to respond to. We&rsquo;ll also go ahead and add our method for creating a new user also.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>App</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
+    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=creating-users>Creating users</h2><p>As you can see we don&rsquo;t need to provide an ID for creating a user, as the system should provide the next available ID to us, using our new function <code>maxID</code>. We&rsquo;ll need to create our <code>app.CreateUser</code> function. Creating a user will be slightly more complicated than retrieving a user, mostly because we will need to get data from the client&rsquo;s body. To do this, we&rsquo;ll create a <code>bytes.Buffer</code> to read the <code>req.body</code> into, then use <code>json.Unmarshal</code> to convert it from a JSON string to a <code>user</code> object.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;bytes&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>maxID</span><span class=p>(</span><span class=nx>d</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>)</span> <span class=p>(</span><span class=nx>m</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>for</span> <span class=nx>k</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>d</span> <span class=p>{</span>
+       <span class=k>if</span> <span class=nx>k</span> <span class=p>&gt;</span> <span class=nx>m</span> <span class=p>{</span>
+         <span class=nx>m</span> <span class=p>=</span> <span class=nx>k</span>
+       <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>m</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>CreateUser</span><span class=p>(</span><span class=nx>w</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>nextID</span> <span class=o>:=</span> <span class=nf>maxID</span><span class=p>(</span><span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span>
+    <span class=nx>p</span> <span class=o>:=</span> <span class=nx>user</span><span class=p>{}</span>
+    <span class=nx>buf</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>bytes</span><span class=p>.</span><span class=nx>Buffer</span><span class=p>)</span>
+    <span class=nx>buf</span><span class=p>.</span><span class=nf>ReadFrom</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>Body</span><span class=p>)</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>json</span><span class=p>.</span><span class=nf>Unmarshal</span><span class=p>(</span><span class=nx>buf</span><span class=p>.</span><span class=nf>Bytes</span><span class=p>(),</span> <span class=o>&amp;</span><span class=nx>p</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>w</span><span class=p>.</span><span class=nf>WriteHeader</span><span class=p>(</span><span class=mi>500</span><span class=p>)</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Fprintf</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span> <span class=s>&#34;500 Internal Server Error\n&#34;</span><span class=p>)</span>
+        <span class=k>return</span>
+    <span class=p>}</span>
+    <span class=nx>p</span><span class=p>.</span><span class=nx>ID</span> <span class=p>=</span> <span class=nx>nextID</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span><span class=p>[</span><span class=nx>nextID</span><span class=p>]</span> <span class=p>=</span> <span class=nx>p</span>
+    <span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Location&#34;</span><span class=p>,</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;http://%s/user/%d&#34;</span><span class=p>,</span> <span class=nx>req</span><span class=p>.</span><span class=nx>Host</span><span class=p>,</span> <span class=nx>nextID</span><span class=p>))</span>
+    <span class=nx>w</span><span class=p>.</span><span class=nf>WriteHeader</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>We see here that we are using the <code>w.Header().Set()</code> method to set a Location header which will tell the client the location of the newly created user. We also return the JSON formatted version of our new user.</p><p>Now to test this method, we can&rsquo;t just simply request the page from our browser, because your browser sends a GET request. We&rsquo;ll need to send the request using something more specialized. For this test, we&rsquo;ll use curl:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ curl -i -X POST http://127.0.0.1:3001/user -d<span class=s1>&#39;{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}&#39;</span>
+HTTP/1.1 <span class=m>200</span> OK
+Content-Length: <span class=m>0</span>
+Content-Type: text/plain<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>utf-8
+Location: http://127.0.0.1:3001/user/2
+
+</code></pre></td></tr></table></div></div><p>This will create a second user in our database (or multiple if run more than once), and we can verify our new user is created by running curl on the location returned above:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ curl -i -X GET http://127.0.0.1:3001/user/2
+HTTP/1.1 <span class=m>200</span> OK
+Content-Length: <span class=m>34</span>
+Content-Type: text/plain<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>utf-8
+
+<span class=o>{</span><span class=s2>&#34;ID&#34;</span>:2,<span class=s2>&#34;Name&#34;</span>:<span class=s2>&#34;User 2&#34;</span>,<span class=s2>&#34;Role&#34;</span>:<span class=s2>&#34;&#34;</span><span class=o>}</span>
+</code></pre></td></tr></table></div></div><h2 id=deleting-users>Deleting Users</h2><p>Deleting users is a fairly easy process. We&rsquo;ll add a new endpoint for <code>user/{id}</code> for the DELETE method. Once we have the ID, we&rsquo;ll verify the ID exists in the database, and delete the key for that user from our map and return a 200. If the key does not exist, we&rsquo;ll return a 404.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
+    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>DeleteUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;DELETE&#34;</span><span class=p>)</span>
+    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>DeleteUser</span><span class=p>(</span><span class=nx>w</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>vars</span> <span class=o>:=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>Vars</span><span class=p>(</span><span class=nx>req</span><span class=p>)</span>
+    <span class=nx>id</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nx>vars</span><span class=p>[</span><span class=s>&#34;id&#34;</span><span class=p>])</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>w</span><span class=p>.</span><span class=nf>WriteHeader</span><span class=p>(</span><span class=mi>500</span><span class=p>)</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Fprintf</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span> <span class=s>&#34;Could not delete user: %v&#34;</span><span class=p>,</span> <span class=nx>err</span><span class=p>.</span><span class=nf>Error</span><span class=p>())</span>
+        <span class=k>return</span>
+    <span class=p>}</span>
+    <span class=nx>_</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span><span class=p>[</span><span class=nx>id</span><span class=p>]</span>
+    <span class=k>if</span> <span class=p>!</span><span class=nx>ok</span> <span class=p>{</span>
+        <span class=nx>w</span><span class=p>.</span><span class=nf>WriteHeader</span><span class=p>(</span><span class=mi>404</span><span class=p>)</span>
+        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Fprintf</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span> <span class=s>&#34;404 page not found\n&#34;</span><span class=p>)</span>
+        <span class=k>return</span>
+    <span class=p>}</span>
+    <span class=nb>delete</span><span class=p>(</span><span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span><span class=p>,</span> <span class=nx>id</span><span class=p>)</span>
+    <span class=nx>w</span><span class=p>.</span><span class=nf>WriteHeader</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>Great! Let&rsquo;s test it out with curl again:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ curl -i -X DELETE http://127.0.0.1:3001/user/1
+HTTP/1.1 <span class=m>200</span> OK
+Content-Length: <span class=m>0</span>
+Content-Type: text/plain<span class=p>;</span> <span class=nv>charset</span><span class=o>=</span>utf-8
+
+</code></pre></td></tr></table></div></div><h2 id=conclusion>Conclusion</h2><p>We&rsquo;ve expanded on our server adding the ability add and remove users. Next we&rsquo;ll add the ability to Update by replacing using PUT and modify using PATCH.</p><p>Here is a gist of our <a href=https://gist.github.com/AarynSmith/1f22c55d9d9ca4085a5e3aa50d846034#file-main-go target=_blank rel="noopener noreffer">main.go</a> from this post.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2018-04-25</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go/>Go</a>,&nbsp;<a href=/tags/rest/>REST</a>,&nbsp;<a href=/tags/api/>api</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/go-rest-api-part-1/ class=prev rel=prev title="Go REST API (Part 1)"><i class="fas fa-angle-left fa-fw"></i>Go REST API (Part 1)</a>
+<a href=/posts/go-rest-api-part-3/ class=next rel=next title="Go REST API (Part 3)">Go REST API (Part 3)<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"},{"display":false,"left":"$","right":"$"}],"strict":false}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
