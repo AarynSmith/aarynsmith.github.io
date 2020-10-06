@@ -152,7 +152,7 @@ theme = "LoveIt"
   
   [params.social] 
     GitHub = "AarynSmith"
-    Gitlab = "AarynSmith"
+    freecodecamp = "aarynsmith"
     Email = "Aaryn.Smith<at>gmail.com"
 
 [markup]
