@@ -92,25 +92,36 @@ projects:
         to customers.
 
 information:
+  enable: true
+  list:
+    - title: Certificates
+      items:
+        - details: 2020 FreeCodeCamp - Responsive Web Design
+          date: 2020
+        - details: 2020 FreeCodeCamp - JavaScript Algorithms and Data Structures
+        - details: 2017 Global Knowledge - Cisco ASA with FirePower Services v2.1
+        - details: 2013 Global Knowledge - VPN 2.0 - Deploying Cisco ASA VPN Solutions 
+
+certificates:
   enable: false
   list:
-    - title: Papers
-      items:
-        - details: 2018 · Lorem Ipsum
-        - details: 2016 · Sed Fringilla
-    - title: Interests
-      details: 'Climbing, Snowboarding, Photography, Travelling'
+    - certificate: Responsive Web Design
+      organization: FreeCodeCamp
+      dates: '2020'
+    - certificate: JavaScript Algorithms and Data Structures
+      organization: FreeCodeCamp
+      dates: '2020'
+    - certificate: Cisco ASA with FirePower Services v2.1
+      organization: Global Knowledge
+      dates: '2017'
+    - certificate: VPN 2.0 - Deploying Cisco ASA VPN Solutions
+      organization: Global Knowledge
+      dates: '2013'
 
 education:
   enable: true
   list:
-    - degree: Cisco ASA with FirePower Services v2.1
-      university: Global Knowledge
-      dates: '2017'
-    - degree: VPN 2.0 - Deploying Cisco ASA VPN Solutions
-      university: Global Knowledge
-      dates: '2013'
-    - degree: Bachelor of Science in Network and Communications Management
+    - degree: B.S. in Network and Communications Management
       university: 'DeVry University, Irving, Texas'
       dates: '2009'
 
@@ -131,14 +142,15 @@ skills:
     - title: Technical
       items:
         - details: Go
-        - details: Python/Ruby/Perl
         - details: Javascript/Node.js
-        - details: C/C++/Embedded Systems
-        - details: Bash/Windows Batch/PowerShell
-        - details: PostgreSQL/MySQL/Microsoft SQL
-        - details: Git and Gitlab CI/CD
-        - details: Docker/Docker-Compose
         - details: HTML/CSS/Bootstrap
+        - details: React/Redux/JQuery/Sass
+        - details: PostgreSQL/MySQL/Microsoft SQL
+        - details: Docker/Docker-Compose
+        - details: Git and Gitlab/Github CI/CD
+        - details: Bash/Windows Batch/PowerShell
+        - details: C/C++/Embedded Systems
+        - details: Python/Ruby/Perl
         - details: Design and implement database structures
         - details: Lead and deliver complex software systems
     - title: Management
@@ -172,12 +184,12 @@ interests:
 social:
   enable: true
   list:
-    - icon: fa fa-envelope
-      url: 'mailto:aaryn.smith<at>gmail.com'
     - icon: fab fa-github
       url: //github.com/AarynSmith
-    - icon: fab fa-gitlab
-      url: //gitlab.com/AarynSmith
+    - icon: fab fa-free-code-camp
+      url: //www.freecodecamp.org/aarynsmith
+    - icon: fa fa-envelope
+      url: 'mailto:aaryn.smith<at>gmail.com'
 
 footer:
   copyright: "Aaryn Smith"

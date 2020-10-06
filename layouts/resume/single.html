@@ -92,25 +92,6 @@
                                 {{ end }}
                             </section>
                             {{ end }}
-                            {{ if $.Param "projects.enable" }}
-                            <section class="project-section py-3">
-                                <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
-                                {{ range $.Param "projects.list" }}
-                                <div class="item mb-3">
-                                    <div class="item-heading row align-items-center mb-2">
-                                        <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">{{ .title }}</h4>
-                                        <div
-                                            class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">
-                                            {{ .meta }}</div>
-                                    </div>
-                                    <div class="item-content">
-                                        <p>{{ .tagline }}</p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                {{ end }}
-                            </section>
-                            {{ end }}
                             {{ if $.Param "information.enable" }}
                             <section class="project-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Information</h3>
@@ -133,10 +114,46 @@
                                 {{ end }}
                             </section>
                             {{ end }}
+
+                            {{ if $.Param "projects.enable" }}
+                            <section class="project-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
+                                {{ range $.Param "projects.list" }}
+                                <div class="item mb-3">
+                                    <div class="item-heading row align-items-center mb-2">
+                                        <h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">{{ .title }}</h4>
+                                        <div
+                                            class="item-meta col-12 col-md-6 col-lg-4 text-muted text-left text-md-right">
+                                            {{ .meta }}</div>
+                                    </div>
+                                    <div class="item-content">
+                                        <p>{{ .tagline }}</p>
+                                    </div>
+                                </div>
+                                <!--//item-->
+                                {{ end }}
+                            </section>
+                            {{ end }}
+
                         </div>
                         <!--//resume-main-->
 
                         <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
+                            {{ if $.Param "certificates.enable" }}
+                            <section class="certificates-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    certificates</h3>
+                                <ul class="list-unstyled resume-certificates-list">
+                                    {{ range $.Param "certificates.list" }}
+                                    <li class="mb-3">
+                                        <div class="resume-certificate font-weight-bold">{{ .certificate }}</div>
+                                        <div class="resume-certificate-org text-muted">{{ .organization }}</div>
+                                        <div class="resume-certificate-time text-muted">{{ .dates }}</div>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            {{ end }}
                             {{ if $.Param "education.enable" }}
                             <section class="education-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">
