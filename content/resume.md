@@ -96,8 +96,8 @@ information:
   list:
     - title: Certificates
       items:
+        - details: 2020 FreeCodeCamp - Front End Libraries
         - details: 2020 FreeCodeCamp - Responsive Web Design
-          date: 2020
         - details: 2020 FreeCodeCamp - JavaScript Algorithms and Data Structures
         - details: 2017 Global Knowledge - Cisco ASA with FirePower Services v2.1
         - details: 2013 Global Knowledge - VPN 2.0 - Deploying Cisco ASA VPN Solutions 
