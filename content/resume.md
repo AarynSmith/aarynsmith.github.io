@@ -143,12 +143,13 @@ skills:
   list:
     - title: Technical
       items:
-        - details: Go
         - details: Javascript/Node.js
-        - details: HTML/CSS/Bootstrap
         - details: React/Redux/JQuery/Sass
-        - details: PostgreSQL/MySQL/Microsoft SQL
+        - details: HTML/CSS/Bootstrap
+        - details: MongoDB/Mongoose
         - details: Docker/Docker-Compose
+        - details: PostgreSQL/MySQL/Microsoft SQL
+        - details: Go
         - details: Git and Gitlab/Github CI/CD
         - details: Bash/Windows Batch/PowerShell
         - details: C/C++/Embedded Systems
