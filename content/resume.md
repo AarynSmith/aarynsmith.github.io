@@ -97,6 +97,7 @@ information:
     - title: Certificates
       items:
         - details: 2020 FreeCodeCamp - Front End Libraries
+        - details: 2020 FreeCodeCamp - APIs and Microservices
         - details: 2020 FreeCodeCamp - Responsive Web Design
         - details: 2020 FreeCodeCamp - Data Visualization
         - details: 2020 FreeCodeCamp - JavaScript Algorithms and Data Structures
