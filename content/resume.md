@@ -94,8 +94,10 @@ projects:
 information:
   enable: true
   list:
-    - title: Certificates
+    - title: Certifications
       items:
+        - details: 2020 FreeCodeCamp - Full Stack
+        - details: 2020 FreeCodeCamp - Information Security 
         - details: 2020 FreeCodeCamp - Front End Libraries
         - details: 2020 FreeCodeCamp - APIs and Microservices
         - details: 2020 FreeCodeCamp - Responsive Web Design
@@ -147,6 +149,7 @@ skills:
         - details: React/Redux/JQuery/Sass
         - details: HTML/CSS/Bootstrap
         - details: MongoDB/Mongoose
+        - details: Socket.io/Mocha/Chai
         - details: Docker/Docker-Compose
         - details: PostgreSQL/MySQL/Microsoft SQL
         - details: Go
