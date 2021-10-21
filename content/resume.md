@@ -20,7 +20,7 @@ contact:
   enable: true
   location: "DFW, Texas"
   list: 
-  - {icon: "fa fa-phone", url: "tel:8172034030", text: "817-203-4030"}
+  - {icon: "fa fa-phone", url: "tel:6826517597", text: "(682) 651-7597"}
   - {icon: "fa fa-envelope", url: "mailto:aaryn.smith<at>gmail.com", text: "aaryn.smith<at>gmail.com"}
   - {icon: "fa fa-globe", url: /, text: "aarynsmith.com"}
 
@@ -125,6 +125,9 @@ certificates:
 education:
   enable: true
   list:
+    - degree: M.S. in Computer Science - Applciation Development
+      university: 'Southern New Hampshire University, Manchester, New Hampshire'
+      dates: 'In Progress'
     - degree: B.S. in Network and Communications Management
       university: 'DeVry University, Irving, Texas'
       dates: '2009'
@@ -145,7 +148,7 @@ skills:
   list:
     - title: Technical
       items:
-        - details: Javascript/Node.js
+        - details: Javascript/Typescript/Node.js
         - details: React/Redux/JQuery/Sass
         - details: HTML/CSS/Bootstrap
         - details: MongoDB/Mongoose
