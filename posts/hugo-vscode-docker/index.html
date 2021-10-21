@@ -1,7 +1,93 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Hugo + VSCode + Docker = ❤️ - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Hugo + VSCode + Docker = ❤️"><meta property="og:description" content="In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers."><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/hugo-vscode-docker/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:published_time" content="2020-06-30T00:00:00+00:00"><meta property="article:modified_time" content="2020-07-10T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/logo.png"><meta name=twitter:title content="Hugo + VSCode + Docker = ❤️"><meta name=twitter:description content="In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers."><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/hugo-vscode-docker/><link rel=prev href=https://aarynsmith.com/posts/aoc18-the-stars-align/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hugo + VSCode + Docker = ❤️","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/hugo-vscode-docker\/"},"genre":"posts","keywords":"hugo, vscode, docker","wordcount":1263,"url":"https:\/\/aarynsmith.com\/posts\/hugo-vscode-docker\/","datePublished":"2020-06-30T00:00:00+00:00","dateModified":"2020-07-10T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/>Resumé</a><a class=menu-item href=/pages/about-me>About</a><a class=menu-item href=/posts/>Blog</a><a class=menu-item href=/projects/>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Hugo + VSCode + Docker = ❤️</h1><h2 class=single-subtitle>Setting up a devcontainer for VSCode to run Hugo</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-30>2020-06-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1263 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#updates-20200710>Updates (20200710)</a></li><li><a href=#introduction>Introduction</a></li><li><a href=#hugo-container>Hugo Container</a></li><li><a href=#jekyll-remote-container>Jekyll Remote Container</a></li><li><a href=#devcontainer-dockerfile>Devcontainer Dockerfile</a></li><li><a href=#devcontainer-json-configuration>Devcontainer Json configuration</a></li><li><a href=#tasks-file>Tasks File</a></li><li><a href=#update>Update</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div><div class=content id=content><p>In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.</p><h2 id=updates-20200710>Updates (20200710)</h2><p>My pull request was accepted (Thanks <a href=https://github.com/Chuxel target=_blank rel="noopener noreffer">Chuck</a>!) and since then I&rsquo;ve also created containers for <a href=https://github.com/AarynSmith/vscode-dev-container-bash target=_blank rel="noopener noreffer">bash script debugging</a> and <a href=https://github.com/AarynSmith/vscode-dev-container-vue target=_blank rel="noopener noreffer">Vue.js development</a> have also been merged, and should be available soon. To use these, open a folder in VSCode, open your Command Palette, and choose &ldquo;Remote-Containers: Add Development Container Configuration Files&rdquo;. From here you can choose &ldquo;Show all Definitions&mldr;&rdquo; and search through all available definitions.</p><h2 id=introduction>Introduction</h2><p>VSCode recently added a Remote extension to develop inside docker containers, called <a href=https://code.visualstudio.com/blogs/2019/05/02/remote-development target=_blank rel="noopener noreffer">Visual Studio Code Remote - Containers</a>. I took inspiration from my Hugo setup with gitlab pages to automatically build a static version of my site whenever I push to the repository, and saw an existing Jekyll remote container configuration, and thought, why not roll my own Hugo remote container.</p><h2 id=hugo-container>Hugo Container</h2><p>I looked at the <a href=https://gitlab.com/pages/hugo/-/tree/registry target=_blank rel="noopener noreffer">container registry</a> for the Hugo image I have configured with Gitlab CI to build my site. There I found a two stage dockerfile, the first stage builds from the golang:1.13-alpine image, downloads, verifies and extracts the prebuilt hugo binary from the Github releases, then uses <a href=https://github.com/yaegashi/muslstack target=_blank rel="noopener noreffer">muslstack</a> to extend the default thread stack size to 8MB to work around segfault issues.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+<!doctype html><html lang>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Hugo + VSCode + Docker = ❤️ - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Hugo + VSCode + Docker = ❤️">
+<meta property="og:description" content="In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aarynsmith.com/posts/hugo-vscode-docker/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-06-30T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-07-10T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://aarynsmith.com/logo.png">
+<meta name=twitter:title content="Hugo + VSCode + Docker = ❤️">
+<meta name=twitter:description content="In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.">
+<meta name=application-name content="Aaryn Smith">
+<meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/hugo-vscode-docker/><link rel=prev href=https://aarynsmith.com/posts/aoc18-the-stars-align/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Hugo + VSCode + Docker = ❤️","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/hugo-vscode-docker\/"},"genre":"posts","keywords":"hugo, vscode, docker","wordcount":1263,"url":"https:\/\/aarynsmith.com\/posts\/hugo-vscode-docker\/","datePublished":"2020-06-30T00:00:00+00:00","dateModified":"2020-07-10T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Aaryn Smith">Aaryn Smith</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/resume/> Resumé </a><a class=menu-item href=/pages/about-me> About </a><a class=menu-item href=/posts/> Blog </a><a class=menu-item href=/projects/> Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="Aaryn Smith">Aaryn Smith</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Hugo + VSCode + Docker = ❤️</h1><h2 class=single-subtitle>Setting up a devcontainer for VSCode to run Hugo</h2><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-30>2020-06-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1263 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#updates-20200710>Updates (20200710)</a></li>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#hugo-container>Hugo Container</a></li>
+<li><a href=#jekyll-remote-container>Jekyll Remote Container</a></li>
+<li><a href=#devcontainer-dockerfile>Devcontainer Dockerfile</a></li>
+<li><a href=#devcontainer-json-configuration>Devcontainer Json configuration</a></li>
+<li><a href=#tasks-file>Tasks File</a></li>
+<li><a href=#update>Update</a></li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.</p>
+<h2 id=updates-20200710>Updates (20200710)</h2>
+<p>My pull request was accepted (Thanks <a href=https://github.com/Chuxel target=_blank rel="noopener noreffer">Chuck</a>!) and since then I&rsquo;ve also created containers for <a href=https://github.com/AarynSmith/vscode-dev-container-bash target=_blank rel="noopener noreffer">bash script debugging</a> and <a href=https://github.com/AarynSmith/vscode-dev-container-vue target=_blank rel="noopener noreffer">Vue.js development</a> have also been merged, and should be available soon. To use these, open a folder in VSCode, open your Command Palette, and choose &ldquo;Remote-Containers: Add Development Container Configuration Files&rdquo;. From here you can choose &ldquo;Show all Definitions&mldr;&rdquo; and search through all available definitions.</p>
+<h2 id=introduction>Introduction</h2>
+<p>VSCode recently added a Remote extension to develop inside docker containers, called <a href=https://code.visualstudio.com/blogs/2019/05/02/remote-development target=_blank rel="noopener noreffer">Visual Studio Code Remote - Containers</a>. I took inspiration from my Hugo setup with gitlab pages to automatically build a static version of my site whenever I push to the repository, and saw an existing Jekyll remote container configuration, and thought, why not roll my own Hugo remote container.</p>
+<h2 id=hugo-container>Hugo Container</h2>
+<p>I looked at the <a href=https://gitlab.com/pages/hugo/-/tree/registry target=_blank rel="noopener noreffer">container registry</a> for the Hugo image I have configured with Gitlab CI to build my site. There I found a two stage dockerfile, the first stage builds from the golang:1.13-alpine image, downloads, verifies and extracts the prebuilt hugo binary from the Github releases, then uses <a href=https://github.com/yaegashi/muslstack target=_blank rel="noopener noreffer">muslstack</a> to extend the default thread stack size to 8MB to work around segfault issues.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -17,7 +103,9 @@
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> golang:1.13-alpine</span><span class=err>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> golang:1.13-alpine</span><span class=err>
 </span><span class=err></span><span class=k>ARG</span> <span class=nv>HUGO</span><span class=o>=</span>hugo
 <span class=k>ARG</span> <span class=nv>HUGO_VERSION</span><span class=o>=</span><span class=m>0</span>.73.0<span class=err>
 </span><span class=err></span><span class=k>ARG</span> <span class=nv>HUGO_SHA</span><span class=o>=</span>7238b1b39d50667190020c93370bb2727d9097226cb3147c982d4d40004da09f
@@ -33,7 +121,12 @@
 </span><span class=se></span>    tar xf <span class=si>${</span><span class=nv>HUGO_VERSION</span><span class=si>}</span>.tar.gz <span class=o>&amp;&amp;</span> mv hugo* /usr/bin/hugo<span class=err>
 </span><span class=err></span><span class=k>RUN</span> go get github.com/yaegashi/muslstack<span class=err>
 </span><span class=err></span><span class=k>RUN</span> muslstack -s 0x800000 /usr/bin/hugo<span class=err>
-</span></code></pre></td></tr></table></div></div><p>The second stage builds from the alpine:edge image, copies the hugo binary from the first (0) stage, builds the site with an image with minimal dependencies.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The second stage builds from the alpine:edge image, copies the hugo binary from the first (0) stage, builds the site with an image with minimal dependencies.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -46,7 +139,9 @@
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> alpine:edge</span><span class=err>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> alpine:edge</span><span class=err>
 </span><span class=err></span><span class=k>ARG</span> <span class=nv>HUGO</span><span class=o>=</span>hugo
 <span class=k>COPY</span> --from<span class=o>=</span><span class=m>0</span> /usr/bin/hugo /usr/bin<span class=err>
 </span><span class=err></span><span class=k>RUN</span> <span class=nb>set</span> -eux <span class=o>&amp;&amp;</span> <span class=se>\
@@ -59,7 +154,20 @@
 </span><span class=err></span><span class=k>EXPOSE</span><span class=s> 1313</span><span class=err>
 </span><span class=err></span><span class=k>WORKDIR</span><span class=s> /src</span><span class=err>
 </span><span class=err></span><span class=k>CMD</span> <span class=p>[</span><span class=s2>&#34;/usr/bin/hugo&#34;</span><span class=p>]</span><span class=err>
-</span></code></pre></td></tr></table></div></div><h2 id=jekyll-remote-container>Jekyll Remote Container</h2><p>Setting up a Jekyll remote container yields a few new files in the working folder:</p><ul><li>.devcontainer/devcontainer.json</li><li>.devcontainer/Dockerfile</li><li>.vscode/tasks.json</li></ul><p>The <a href=https://code.visualstudio.com/docs/remote/containers#_devcontainerjson-reference target=_blank rel="noopener noreffer">devcontainer.json</a> file contains some configuration settings for VScode and the tasks.json file defines some <a href=https://code.visualstudio.com/docs/editor/tasks#vscode target=_blank rel="noopener noreffer">tasks</a> that can be run from <strong>Terminal > Run Task</strong> or from the Command Palette using the command <strong>Tasks: Run Task</strong></p><p>The dockerfile contained the configuration of a docker container for building a jekyll image. I found the parts of the dockerfile relevant to setting up a remote user:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=jekyll-remote-container>Jekyll Remote Container</h2>
+<p>Setting up a Jekyll remote container yields a few new files in the working folder:</p>
+<ul>
+<li>.devcontainer/devcontainer.json</li>
+<li>.devcontainer/Dockerfile</li>
+<li>.vscode/tasks.json</li>
+</ul>
+<p>The <a href=https://code.visualstudio.com/docs/remote/containers#_devcontainerjson-reference target=_blank rel="noopener noreffer">devcontainer.json</a> file contains some configuration settings for VScode and the tasks.json file defines some <a href=https://code.visualstudio.com/docs/editor/tasks#vscode target=_blank rel="noopener noreffer">tasks</a> that can be run from <strong>Terminal > Run Task</strong> or from the Command Palette using the command <strong>Tasks: Run Task</strong></p>
+<p>The dockerfile contained the configuration of a docker container for building a jekyll image. I found the parts of the dockerfile relevant to setting up a remote user:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -69,7 +177,9 @@
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>ARG</span> <span class=nv>USERNAME</span><span class=o>=</span>vscode
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>ARG</span> <span class=nv>USERNAME</span><span class=o>=</span>vscode
 <span class=k>ARG</span> <span class=nv>USER_UID</span><span class=o>=</span><span class=m>1000</span>
 <span class=k>ARG</span> <span class=nv>USER_GID</span><span class=o>=</span><span class=nv>$USER_UID</span><span class=err>
 </span><span class=err></span>...<span class=err>
@@ -79,7 +189,14 @@
 </span><span class=err></span>    <span class=o>&amp;&amp;</span> apt-get install -y sudo <span class=se>\
 </span><span class=se></span>    <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=nv>$USERNAME</span> <span class=nv>ALL</span><span class=o>=</span><span class=se>\(</span>root<span class=se>\)</span> NOPASSWD:ALL &gt; /etc/sudoers.d/<span class=nv>$USERNAME</span><span class=se>\
 </span><span class=se></span>    <span class=o>&amp;&amp;</span> chmod <span class=m>0440</span> /etc/sudoers.d/<span class=nv>$USERNAME</span><span class=err>
-</span></code></pre></td></tr></table></div></div><p>The rest of the dockerfile installs git, openssh, less, ruby, bundler, jekyll and their dependencies, then cleaning up any install files.</p><h2 id=devcontainer-dockerfile>Devcontainer Dockerfile</h2><p>I created a new two stage dockerfile in .devcontainer that, first, installs some setup dependencies, then downloads the latest hugo_extended binary, and updates it with muslstack. It takes two build arguments to specify the hugo variant, and version number.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The rest of the dockerfile installs git, openssh, less, ruby, bundler, jekyll and their dependencies, then cleaning up any install files.</p>
+<h2 id=devcontainer-dockerfile>Devcontainer Dockerfile</h2>
+<p>I created a new two stage dockerfile in .devcontainer that, first, installs some setup dependencies, then downloads the latest hugo_extended binary, and updates it with muslstack. It takes two build arguments to specify the hugo variant, and version number.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -95,7 +212,9 @@
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> golang:1.13-alpine</span><span class=err>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> golang:1.13-alpine</span><span class=err>
 </span><span class=err>
 </span><span class=err></span><span class=k>ARG</span> <span class=nv>VARIANT</span><span class=o>=</span>hugo_extended
 <span class=k>ARG</span> <span class=nv>VERSION</span><span class=o>=</span>latest
@@ -111,7 +230,12 @@
 </span><span class=se></span>    mv hugo* /usr/bin/hugo <span class=o>&amp;&amp;</span> <span class=se>\
 </span><span class=se></span>    go get github.com/yaegashi/muslstack <span class=o>&amp;&amp;</span> <span class=se>\
 </span><span class=se></span>    muslstack -s 0x800000 /usr/bin/hugo<span class=err>
-</span></code></pre></td></tr></table></div></div><p>The second stage uses alpine:edge and copies over the hugo binary, installs libc, libstdc++, sudo, git, and openssh-client and sets up the vscode user, group and sudo access.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>The second stage uses alpine:edge and copies over the hugo binary, installs libc, libstdc++, sudo, git, and openssh-client and sets up the vscode user, group and sudo access.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -126,7 +250,9 @@
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> alpine:edge</span><span class=err>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=k>FROM</span><span class=s> alpine:edge</span><span class=err>
 </span><span class=err></span><span class=k>ARG</span> <span class=nv>USERNAME</span><span class=o>=</span>vscode
 <span class=k>ARG</span> <span class=nv>USER_UID</span><span class=o>=</span><span class=m>1000</span>
 <span class=k>ARG</span> <span class=nv>USER_GID</span><span class=o>=</span><span class=nv>$USER_UID</span><span class=err>
@@ -141,7 +267,13 @@
 </span><span class=err></span><span class=k>EXPOSE</span><span class=s> 1313</span><span class=err>
 </span><span class=err></span><span class=k>WORKDIR</span><span class=s> /src</span><span class=err>
 </span><span class=err></span><span class=k>CMD</span> <span class=p>[</span><span class=s2>&#34;/usr/bin/hugo server&#34;</span><span class=p>]</span><span class=err>
-</span></code></pre></td></tr></table></div></div><h2 id=devcontainer-json-configuration>Devcontainer Json configuration</h2><p>In the JSON configuration you can specify the build arguments for the Dockerfile, shell, any extensions to be installed, the ports to be forwarded, and the remote user to use instead of root.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id=devcontainer-json-configuration>Devcontainer Json configuration</h2>
+<p>In the JSON configuration you can specify the build arguments for the Dockerfile, shell, any extensions to be installed, the ports to be forwarded, and the remote user to use instead of root.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -159,7 +291,9 @@
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
   <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;Hugo&#34;</span><span class=p>,</span>
   <span class=nt>&#34;build&#34;</span><span class=p>:</span> <span class=p>{</span>
     <span class=nt>&#34;dockerfile&#34;</span><span class=p>:</span> <span class=s2>&#34;Dockerfile&#34;</span><span class=p>,</span>
@@ -177,21 +311,40 @@
   <span class=p>],</span>
   <span class=nt>&#34;remoteUser&#34;</span><span class=p>:</span> <span class=s2>&#34;vscode&#34;</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>Here the variant can be set to either &lsquo;hugo&rsquo; or &lsquo;hugo_extended&rsquo;, and the version can be set to any valid version number, or &lsquo;latest&rsquo; to automatically get the most up to date release. Additionally this is where extensions for the container can be specified, personally I use the following extensions:</p><ul><li>David Anson&rsquo;s <a href=https://github.com/DavidAnson/vscode-markdownlint target=_blank rel="noopener noreffer">vscode-markdownlint</a>, because everything should be linted properly.</li><li>Shuzo Iwasaki&rsquo;s <a href=https://github.com/shuGH/vscode-table-formatter target=_blank rel="noopener noreffer">Table Formatter</a>, because properly formatted markdown tables are beautiful.</li><li>Street Side Software&rsquo;s <a href=https://github.com/streetsidesoftware/vscode-spell-checker target=_blank rel="noopener noreffer">Code Spell Checker</a>, because, spell checking&mldr;</li></ul><p>These extensions can be added by updating the &lsquo;extensions&rsquo; section to the following:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table>
+</div>
+</div><p>Here the variant can be set to either &lsquo;hugo&rsquo; or &lsquo;hugo_extended&rsquo;, and the version can be set to any valid version number, or &lsquo;latest&rsquo; to automatically get the most up to date release. Additionally this is where extensions for the container can be specified, personally I use the following extensions:</p>
+<ul>
+<li>David Anson&rsquo;s <a href=https://github.com/DavidAnson/vscode-markdownlint target=_blank rel="noopener noreffer">vscode-markdownlint</a>, because everything should be linted properly.</li>
+<li>Shuzo Iwasaki&rsquo;s <a href=https://github.com/shuGH/vscode-table-formatter target=_blank rel="noopener noreffer">Table Formatter</a>, because properly formatted markdown tables are beautiful.</li>
+<li>Street Side Software&rsquo;s <a href=https://github.com/streetsidesoftware/vscode-spell-checker target=_blank rel="noopener noreffer">Code Spell Checker</a>, because, spell checking&mldr;</li>
+</ul>
+<p>These extensions can be added by updating the &lsquo;extensions&rsquo; section to the following:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
   <span class=nt>&#34;extensions&#34;</span><span class=p>:</span> <span class=p>[</span>
     <span class=s2>&#34;davidanson.vscode-markdownlint&#34;</span><span class=p>,</span>
     <span class=s2>&#34;shuworks.vscode-table-formatter&#34;</span><span class=p>,</span>
     <span class=s2>&#34;streetsidesoftware.code-spell-checker&#34;</span>
   <span class=p>],</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><h2 id=tasks-file>Tasks File</h2><p>The .vscode/tasks.json file contains some helpful tasks for interacting with hugo. The default &lsquo;test&rsquo; task, &ldquo;Serve Drafts&rdquo;, runs hugo in server mode with the <code>-D</code> option, causing hugo to render any pages with <code>draft: true</code> in the front matter. The default &lsquo;build&rsquo; task simply runs the <code>hugo</code> command, where hugo will build a static version of the site, and place it in the <code>./public</code> directory.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=tasks-file>Tasks File</h2>
+<p>The .vscode/tasks.json file contains some helpful tasks for interacting with hugo. The default &lsquo;test&rsquo; task, &ldquo;Serve Drafts&rdquo;, runs hugo in server mode with the <code>-D</code> option, causing hugo to render any pages with <code>draft: true</code> in the front matter. The default &lsquo;build&rsquo; task simply runs the <code>hugo</code> command, where hugo will build a static version of the site, and place it in the <code>./public</code> directory.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -215,7 +368,9 @@
 </span><span class=lnt>22
 </span><span class=lnt>23
 </span><span class=lnt>24
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span>
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
     <span class=nt>&#34;version&#34;</span><span class=p>:</span> <span class=s2>&#34;2.0.0&#34;</span><span class=p>,</span>
     <span class=nt>&#34;tasks&#34;</span><span class=p>:</span> <span class=p>[</span>
         <span class=p>{</span>
@@ -239,4 +394,52 @@
         <span class=p>}</span>
     <span class=p>]</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>These tasks can be run from the Command Palette using the &ldquo;Run Test Task&rdquo; and &ldquo;Run Build Task&rdquo; respectively.</p><h2 id=update>Update</h2><p>After making my pull request Chuck Lantz made some suggestions for improvements. I switched the second stage of the dockerfile to use a more common (to remote containers) image: <code>mcr.microsoft.com/vscode/devcontainers/base:alpine</code>, which allowed me to set the default shell to zsh. I also added a Better-TOML to the default extensions.</p><h2 id=conclusion>Conclusion</h2><p>This template for a hugo docker container in vscode is currently available in my fork of the Microsoft/vscode-dev-containers, <a href=https://github.com/AarynSmith/vscode-dev-containers target=_blank rel="noopener noreffer">AarynSmith/vscode-dev-containers</a>, and there is an open pull request <a href=https://github.com/microsoft/vscode-dev-containers/pull/389 target=_blank rel="noopener noreffer">here</a>. Once this pull request is available you should be able to install the configuration using the following steps:</p><ol><li>Start VS Code and open your project folder.</li><li>Press F1 select and Remote-Containers: Add Development Container Configuration Files&mldr; from the command palette.</li><li>Select the Hugo definition.</li></ol><p>Until then my template is available from my fork or from my repository <a href=https://github.com/AarynSmith/vscode-dev-container-hugo target=_blank rel="noopener noreffer">https://github.com/AarynSmith/vscode-dev-container-hugo</a></p><ol><li>Clone the repository: <code>git clone https://github.com/AarynSmith/vscode-dev-containers.git</code></li><li>Copy the contents of the folder in the cloned repository to the root of your project folder.</li><li>Start VS Code and open your project folder.</li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2020-07-10</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hugo/>hugo</a>,&nbsp;<a href=/tags/vscode/>vscode</a>,&nbsp;<a href=/tags/docker/>docker</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/aoc18-the-stars-align/ class=prev rel=prev title="AOC18: The Stars Align"><i class="fas fa-angle-left fa-fw"></i>AOC18: The Stars Align</a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":1000},"comment":{}};</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body></html>
+</code></pre></td></tr></table>
+</div>
+</div><p>These tasks can be run from the Command Palette using the &ldquo;Run Test Task&rdquo; and &ldquo;Run Build Task&rdquo; respectively.</p>
+<h2 id=update>Update</h2>
+<p>After making my pull request Chuck Lantz made some suggestions for improvements. I switched the second stage of the dockerfile to use a more common (to remote containers) image: <code>mcr.microsoft.com/vscode/devcontainers/base:alpine</code>, which allowed me to set the default shell to zsh. I also added a Better-TOML to the default extensions.</p>
+<h2 id=conclusion>Conclusion</h2>
+<p>This template for a hugo docker container in vscode is currently available in my fork of the Microsoft/vscode-dev-containers, <a href=https://github.com/AarynSmith/vscode-dev-containers target=_blank rel="noopener noreffer">AarynSmith/vscode-dev-containers</a>, and there is an open pull request <a href=https://github.com/microsoft/vscode-dev-containers/pull/389 target=_blank rel="noopener noreffer">here</a>. Once this pull request is available you should be able to install the configuration using the following steps:</p>
+<ol>
+<li>Start VS Code and open your project folder.</li>
+<li>Press F1 select and Remote-Containers: Add Development Container Configuration Files&mldr; from the command palette.</li>
+<li>Select the Hugo definition.</li>
+</ol>
+<p>Until then my template is available from my fork or from my repository <a href=https://github.com/AarynSmith/vscode-dev-container-hugo target=_blank rel="noopener noreffer">https://github.com/AarynSmith/vscode-dev-container-hugo</a></p>
+<ol>
+<li>Clone the repository: <code>git clone https://github.com/AarynSmith/vscode-dev-containers.git</code></li>
+<li>Copy the contents of the folder in the cloned repository to the root of your project folder.</li>
+<li>Start VS Code and open your project folder.</li>
+</ol></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2020-07-10</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hugo/>hugo</a>,&nbsp;<a href=/tags/vscode/>vscode</a>,&nbsp;<a href=/tags/docker/>docker</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div><div class=post-nav><a href=/posts/aoc18-the-stars-align/ class=prev rel=prev title="AOC18: The Stars Align"><i class="fas fa-angle-left fa-fw"></i>AOC18: The Stars Align</a></div></div><div id=comments></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body>
+</html>
