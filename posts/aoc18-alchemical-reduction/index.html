@@ -1,83 +1,9 @@
-<!doctype html><html lang>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="noodp">
-<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>AOC18: Alchemical Reduction - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="AOC18: Alchemical Reduction">
-<meta property="og:description" content="It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aarynsmith.com/posts/aoc18-alchemical-reduction/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2018-12-05T00:00:00+00:00">
-<meta property="article:modified_time" content="2018-12-05T00:00:00+00:00">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://aarynsmith.com/logo.png">
-<meta name=twitter:title content="AOC18: Alchemical Reduction">
-<meta name=twitter:description content="It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.">
-<meta name=application-name content="Aaryn Smith">
-<meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/aoc18-alchemical-reduction/><link rel=prev href=https://aarynsmith.com/posts/aoc18-repose-record/><link rel=next href=https://aarynsmith.com/posts/aoc18-chronal-coordinates/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"AOC18: Alchemical Reduction","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/aoc18-alchemical-reduction\/"},"genre":"posts","keywords":"AdventOfCode, Go","wordcount":659,"url":"https:\/\/aarynsmith.com\/posts\/aoc18-alchemical-reduction\/","datePublished":"2018-12-05T00:00:00+00:00","dateModified":"2018-12-05T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
-<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu>
-<div class=menu-inner><a class=menu-item href=/resume/> Resumé </a><a class=menu-item href=/pages/about-me> About </a><a class=menu-item href=/posts/> Blog </a><a class=menu-item href=/projects/> Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
-<div class=header-container>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
-<span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
-<div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>Contents</h2>
-<div class="toc-content always-active" id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">AOC18: Alchemical Reduction</h1><h2 class=single-subtitle>Advent of Code 2018 Day 5</h2><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-12-05>2018-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;659 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
-</div><div class="details toc" id=toc-static kept>
-<div class="details-summary toc-title">
-<span>Contents</span>
-<span><i class="details-icon fas fa-angle-right"></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
-<ul>
-<li><a href=#part-1>Part 1</a></li>
-<li><a href=#part-2>Part 2</a></li>
-</ul>
-</nav></div>
-</div><div class=content id=content><p>It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.</p>
-<p>Welcome to <a href=https://adventofcode.com/2018/ target=_blank rel="noopener noreffer">Advent Of Code 2018</a>. You can read Part 1 of this series <a href=/blog/advent-of-code-2018-day-1/ rel>Here</a> or see all the parts of this series <a href=/tags/adventofcode/ rel>Here</a>.</p>
-<h2 id=part-1>Part 1</h2>
-<p><a href=https://adventofcode.com/2018/day/4 target=_blank rel="noopener noreffer">Day 5</a> gives us a long polymer sequence an asks us to reduce it by finding pairs of upper- and lowercase letters. We start by reading in the entire sequence, trimming any extra characters off the end.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"><title>AOC18: Alchemical Reduction - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="AOC18: Alchemical Reduction">
+<meta property="og:description" content="It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles."><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/aoc18-alchemical-reduction/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-12-05T00:00:00+00:00"><meta property="article:modified_time" content="2018-12-05T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/logo.png"><meta name=twitter:title content="AOC18: Alchemical Reduction"><meta name=twitter:description content="It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles."><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/aoc18-alchemical-reduction/><link rel=prev href=https://aarynsmith.com/posts/aoc18-repose-record/><link rel=next href=https://aarynsmith.com/posts/aoc18-chronal-coordinates/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"AOC18: Alchemical Reduction","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/aoc18-alchemical-reduction\/"},"genre":"posts","keywords":"AdventOfCode, Go","wordcount":659,"url":"https:\/\/aarynsmith.com\/posts\/aoc18-alchemical-reduction\/","datePublished":"2018-12-05T00:00:00+00:00","dateModified":"2018-12-05T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">AOC18: Alchemical Reduction</h1><h2 class=single-subtitle>Advent of Code 2018 Day 5</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-12-05>2018-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;659 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#part-1>Part 1</a></li><li><a href=#part-2>Part 2</a></li></ul></nav></div></div><div class=content id=content><p>It&rsquo;s that time of year again, Christmas is around the corner and Eric Wastl has gifted us with another set of Advent of Code puzzles.</p><p>Welcome to <a href=https://adventofcode.com/2018/ target=_blank rel="noopener noreffer">Advent Of Code 2018</a>. You can read Part 1 of this series <a href=/blog/advent-of-code-2018-day-1/ rel>Here</a> or see all the parts of this series <a href=/tags/adventofcode/ rel>Here</a>.</p><h2 id=part-1>Part 1</h2><p><a href=https://adventofcode.com/2018/day/4 target=_blank rel="noopener noreffer">Day 5</a> gives us a long polymer sequence an asks us to reduce it by finding pairs of upper- and lowercase letters. We start by reading in the entire sequence, trimming any extra characters off the end.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -93,30 +19,23 @@
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
-
-<span class=kn>import</span> <span class=p>(</span>
-    <span class=s>&#34;fmt&#34;</span>
-    <span class=s>&#34;io/ioutil&#34;</span>
-    <span class=s>&#34;strings&#34;</span>
-<span class=p>)</span>
-
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-    <span class=nx>dat</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>ioutil</span><span class=p>.</span><span class=nf>ReadFile</span><span class=p>(</span><span class=s>&#34;Day5.txt&#34;</span><span class=p>)</span>
-    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
-        <span class=nb>panic</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
-    <span class=p>}</span>
-    <span class=nx>Seq</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>TrimSpace</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>dat</span><span class=p>))</span>
-    <span class=o>...</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Next we&rsquo;ll write a quick function to find all the components our polymer is made up of, since we&rsquo;re only concerned an upper/lowercase pair, we&rsquo;ll just record the uppercase versions. We can create a map using the uppercase components as a key to ensure we get a complete list of unique components, then iterate over the map and append each component to a slice.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;io/ioutil&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;strings&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>dat</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>ioutil</span><span class=p>.</span><span class=nf>ReadFile</span><span class=p>(</span><span class=s>&#34;Day5.txt&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nb>panic</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Seq</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>TrimSpace</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>dat</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=o>...</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Next we&rsquo;ll write a quick function to find all the components our polymer is made up of, since we&rsquo;re only concerned an upper/lowercase pair, we&rsquo;ll just record the uppercase versions. We can create a map using the uppercase components as a key to ensure we get a complete list of unique components, then iterate over the map and append each component to a slice.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -127,25 +46,18 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>[]</span><span class=kt>string</span> <span class=p>{</span>
-    <span class=nx>r</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>bool</span><span class=p>{}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>s</span> <span class=p>{</span>
-        <span class=nx>r</span><span class=p>[</span><span class=nx>strings</span><span class=p>.</span><span class=nf>ToUpper</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>c</span><span class=p>))]</span> <span class=p>=</span> <span class=kc>true</span>
-    <span class=p>}</span>
-    <span class=nx>keys</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>r</span><span class=p>))</span>
-    <span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
-        <span class=nx>keys</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>keys</span><span class=p>,</span> <span class=nx>k</span><span class=p>)</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=nx>keys</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Next we&rsquo;ll want to write a function to reduce our polymer, by removing adjacent upper/lower pairs. A quick and easy way to accomplish this is to use the strings.Replace method. We can feed in an old string of component + strings.ToLower(component), and a new string of &ldquo;&rdquo;, to effectively delete any adjacent pairs. Of course we&rsquo;ll also need to do the inverse as well to cover any lower/upper pairs. If we range over our list of components, we can eliminate any pairs, but this could leave us with un-reduced pairs after deletion. We can compare the input length to the reduced length. If it has been reduced, we try again, making our function recursive. If it hasn&rsquo;t been reduced, we return our final length up the chain.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>[]</span><span class=kt>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>r</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>bool</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>s</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>r</span><span class=p>[</span><span class=nx>strings</span><span class=p>.</span><span class=nf>ToUpper</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>c</span><span class=p>))]</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>keys</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>r</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>keys</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>keys</span><span class=p>,</span> <span class=nx>k</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>keys</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Next we&rsquo;ll want to write a function to reduce our polymer, by removing adjacent upper/lower pairs. A quick and easy way to accomplish this is to use the strings.Replace method. We can feed in an old string of component + strings.ToLower(component), and a new string of &ldquo;&rdquo;, to effectively delete any adjacent pairs. Of course we&rsquo;ll also need to do the inverse as well to cover any lower/upper pairs. If we range over our list of components, we can eliminate any pairs, but this could leave us with un-reduced pairs after deletion. We can compare the input length to the reduced length. If it has been reduced, we try again, making our function recursive. If it hasn&rsquo;t been reduced, we return our final length up the chain.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -156,24 +68,18 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>[]</span><span class=kt>string</span> <span class=p>{</span>
-    <span class=nx>r</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>bool</span><span class=p>{}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>s</span> <span class=p>{</span>
-        <span class=nx>r</span><span class=p>[</span><span class=nx>strings</span><span class=p>.</span><span class=nf>ToUpper</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>c</span><span class=p>))]</span> <span class=p>=</span> <span class=kc>true</span>
-    <span class=p>}</span>
-    <span class=nx>keys</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>r</span><span class=p>))</span>
-    <span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
-        <span class=nx>keys</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>keys</span><span class=p>,</span> <span class=nx>k</span><span class=p>)</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=nx>keys</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>[]</span><span class=kt>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>r</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>bool</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>s</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>r</span><span class=p>[</span><span class=nx>strings</span><span class=p>.</span><span class=nf>ToUpper</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>c</span><span class=p>))]</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>keys</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>([]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>r</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>r</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>keys</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>keys</span><span class=p>,</span> <span class=nx>k</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>keys</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -184,37 +90,22 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>comp</span> <span class=p>[]</span><span class=kt>string</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
-    <span class=kd>var</span> <span class=nx>origLen</span> <span class=p>=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>comp</span> <span class=p>{</span>
-        <span class=nx>s</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>c</span> <span class=o>+</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>),</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-        <span class=nx>s</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>)</span> <span class=o>+</span> <span class=nx>c</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-    <span class=p>}</span>
-    <span class=k>if</span> <span class=nx>origLen</span> <span class=p>&gt;</span> <span class=nb>len</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span> <span class=p>{</span>
-        <span class=nx>s</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>comp</span><span class=p>)</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=nx>s</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Running this function on our list will give us our fully reduced sequence, as well as the result for part 1.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>comp</span> <span class=p>[]</span><span class=kt>string</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>origLen</span> <span class=p>=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>comp</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>s</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>c</span> <span class=o>+</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>),</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>s</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>)</span> <span class=o>+</span> <span class=nx>c</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nx>origLen</span> <span class=p>&gt;</span> <span class=nb>len</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>s</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>comp</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>s</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Running this function on our list will give us our fully reduced sequence, as well as the result for part 1.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go>    <span class=nx>Seq</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>Seq</span><span class=p>,</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>))</span>
-    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;P1Answer: %d\n&#34;</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>Seq</span><span class=p>))</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=part-2>Part 2</h2>
-<p>Part 2 asks us to find which component we can remove completely to reduce our polymer the most. By starting with our list of components, and iteratively removing a component&rsquo;s upper and lower versions from the original sequence using the strings.Replace method. Then reducing it, we can track and find the shortest possible polymer sequence. Resulting in our answer to part 2.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>Seq</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>Seq</span><span class=p>,</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;P1Answer: %d\n&#34;</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=nx>Seq</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=part-2>Part 2</h2><p>Part 2 asks us to find which component we can remove completely to reduce our polymer the most. By starting with our list of components, and iteratively removing a component&rsquo;s upper and lower versions from the original sequence using the strings.Replace method. Then reducing it, we can track and find the shortest possible polymer sequence. Resulting in our answer to part 2.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -226,53 +117,18 @@
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go>    <span class=nx>Comp</span> <span class=o>:=</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>)</span>
-    <span class=nx>P2Count</span> <span class=o>:=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>)</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>Comp</span> <span class=p>{</span>
-        <span class=nx>newSeq</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>,</span> <span class=nx>c</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-        <span class=nx>newSeq</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>,</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>),</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-        <span class=nx>newSeq</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>,</span> <span class=nx>Comp</span><span class=p>)</span>
-
-        <span class=k>if</span> <span class=nx>P2Count</span> <span class=p>&gt;</span> <span class=nb>len</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>)</span> <span class=p>{</span>
-            <span class=nx>P2Count</span> <span class=p>=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;P2Answer: %d&#34;</span><span class=p>,</span> <span class=nx>P2Count</span><span class=p>)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>The complete code for this puzzle is available, along with the other days, on my Gitlab repository <a href=https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_5/Day5.go target=_blank rel="noopener noreffer">https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_5/Day5.go</a></p>
-<p>If you have any questions or comments, please feel free comment below.</p></div><div class=post-footer id=post-footer>
-<div class=post-info>
-<div class=post-info-line>
-<div class=post-info-mod>
-<span>Updated on 2018-12-05</span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
-<div class=post-info-md></div>
-<div class=post-info-share>
-<span></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/adventofcode/>AdventOfCode</a>,&nbsp;<a href=/tags/go/>Go</a></section>
-<section>
-<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
-</section>
-</div><div class=post-nav><a href=/posts/aoc18-repose-record/ class=prev rel=prev title="AOC18: Repose Record"><i class="fas fa-angle-left fa-fw"></i>AOC18: Repose Record</a>
-<a href=/posts/aoc18-chronal-coordinates/ class=next rel=next title="AOC18: Chronal Coordinates">AOC18: Chronal Coordinates<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div>
-</main><footer class=footer>
-<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
-<i class="fas fa-arrow-up fa-fw"></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments">
-<i class="fas fa-comment fa-fw"></i>
-</a>
-</div><link rel=stylesheet href=/lib/katex/katex.min.4710034e669c7ff17f823f9ba12cf8a36582d65b007f79cbc4a3c11d7db2e4ca.css integrity="sha256-RxADTmacf/F/gj+boSz4o2WC1lsAf3nLxKPBHX2y5Mo="><link rel=stylesheet href=/lib/katex/copy-tex.min.bf9ff4137fec38f6255419e142d0883c9c52090885d746f80eee12b273d9b3e0.css integrity="sha256-v5/0E3/sOPYlVBnhQtCIPJxSCQiF10b4Du4SsnPZs+A="><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript src=/lib/katex/katex.min.17f5dd6b9f123dd7140abfb18521b3f4c036cd004f6f40121182a8865f140877.js integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc="></script><script type=text/javascript src=/lib/katex/auto-render.min.f74776a677f0d2be0af0264058f928e2ba455d0b19bc985304660d922a43a6b2.js integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI="></script><script type=text/javascript src=/lib/katex/copy-tex.min.2ab2237329021bc443986c8327f6e61357fb68a54e5d233d224023718c02207d.js integrity="sha256-KrIjcykCG8RDmGyDJ/bmE1f7aKVOXSM9IkAjcYwCIH0="></script><script type=text/javascript src=/lib/katex/mhchem.min.5cea356d6025c5a2f18c454c83ec5674dbb04fab1cd1d75569e77788c6b6f888.js integrity="sha256-XOo1bWAlxaLxjEVMg+xWdNuwT6sc0ddVaed3iMa2+Ig="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"$$",right:"$$"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"},{display:!1,left:"$",right:"$"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body>
-</html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>    <span class=nx>Comp</span> <span class=o>:=</span> <span class=nf>Components</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>P2Count</span> <span class=o>:=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>c</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>Comp</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>newSeq</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>OrigSeq</span><span class=p>,</span> <span class=nx>c</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>newSeq</span> <span class=p>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Replace</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>,</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>ToLower</span><span class=p>(</span><span class=nx>c</span><span class=p>),</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>newSeq</span> <span class=p>=</span> <span class=nf>Reduce</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>,</span> <span class=nx>Comp</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>P2Count</span> <span class=p>&gt;</span> <span class=nb>len</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>P2Count</span> <span class=p>=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>newSeq</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;P2Answer: %d&#34;</span><span class=p>,</span> <span class=nx>P2Count</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>The complete code for this puzzle is available, along with the other days, on my Gitlab repository <a href=https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_5/Day5.go target=_blank rel="noopener noreffer">https://gitlab.com/aarynsmith/adventofcode/blob/master/2018/Day_5/Day5.go</a></p><p>If you have any questions or comments, please feel free comment below.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2018-12-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/adventofcode/>AdventOfCode</a>,&nbsp;<a href=/tags/go/>Go</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/aoc18-repose-record/ class=prev rel=prev title="AOC18: Repose Record"><i class="fas fa-angle-left fa-fw"></i>AOC18: Repose Record</a>
+<a href=/posts/aoc18-chronal-coordinates/ class=next rel=next title="AOC18: Chronal Coordinates">AOC18: Chronal Coordinates<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.4710034e669c7ff17f823f9ba12cf8a36582d65b007f79cbc4a3c11d7db2e4ca.css integrity="sha256-RxADTmacf/F/gj+boSz4o2WC1lsAf3nLxKPBHX2y5Mo="><link rel=stylesheet href=/lib/katex/copy-tex.min.bf9ff4137fec38f6255419e142d0883c9c52090885d746f80eee12b273d9b3e0.css integrity="sha256-v5/0E3/sOPYlVBnhQtCIPJxSCQiF10b4Du4SsnPZs+A="><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript src=/lib/katex/katex.min.17f5dd6b9f123dd7140abfb18521b3f4c036cd004f6f40121182a8865f140877.js integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc="></script><script type=text/javascript src=/lib/katex/auto-render.min.f74776a677f0d2be0af0264058f928e2ba455d0b19bc985304660d922a43a6b2.js integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI="></script><script type=text/javascript src=/lib/katex/copy-tex.min.2ab2237329021bc443986c8327f6e61357fb68a54e5d233d224023718c02207d.js integrity="sha256-KrIjcykCG8RDmGyDJ/bmE1f7aKVOXSM9IkAjcYwCIH0="></script><script type=text/javascript src=/lib/katex/mhchem.min.5cea356d6025c5a2f18c454c83ec5674dbb04fab1cd1d75569e77788c6b6f888.js integrity="sha256-XOo1bWAlxaLxjEVMg+xWdNuwT6sc0ddVaed3iMa2+Ig="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"$$",right:"$$"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"},{display:!1,left:"$",right:"$"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body></html>

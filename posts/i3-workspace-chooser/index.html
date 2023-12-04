@@ -1,106 +1,19 @@
-<!doctype html><html lang>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="noodp">
-<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>I3 Workspace Chooser - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="I3 Workspace Chooser">
-<meta property="og:description" content="After working with I3 I&rsquo;ve got a few window layouts I like for various tasks.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aarynsmith.com/posts/i3-workspace-chooser/"><meta property="og:image" content="https://aarynsmith.com/posts/i3-workspace-chooser/featured-image.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2018-05-25T00:00:00+00:00">
-<meta property="article:modified_time" content="2018-05-25T00:00:00+00:00">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://aarynsmith.com/posts/i3-workspace-chooser/featured-image.png">
-<meta name=twitter:title content="I3 Workspace Chooser">
-<meta name=twitter:description content="After working with I3 I&rsquo;ve got a few window layouts I like for various tasks.">
-<meta name=application-name content="Aaryn Smith">
-<meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/i3-workspace-chooser/><link rel=prev href=https://aarynsmith.com/posts/project-euler-4-6/><link rel=next href=https://aarynsmith.com/posts/project-euler-7-9/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"I3 Workspace Chooser","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/i3-workspace-chooser\/"},"genre":"posts","keywords":"i3wm, linux, scripting","wordcount":887,"url":"https:\/\/aarynsmith.com\/posts\/i3-workspace-chooser\/","datePublished":"2018-05-25T00:00:00+00:00","dateModified":"2018-05-25T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
-<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu>
-<div class=menu-inner><a class=menu-item href=/resume/> Resumé </a><a class=menu-item href=/pages/about-me> About </a><a class=menu-item href=/posts/> Blog </a><a class=menu-item href=/projects/> Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
-<div class=header-container>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
-<span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
-<div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>Contents</h2>
-<div class="toc-content always-active" id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">I3 Workspace Chooser</h1><h2 class=single-subtitle>Creating an workspace chooser for I3</h2><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-05-25>2018-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;887 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
-</div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=featured-image.png data-srcset="/posts/i3-workspace-chooser/featured-image.png, featured-image.png 1.5x, /posts/i3-workspace-chooser/featured-image.png 2x" data-sizes=auto alt=/posts/i3-workspace-chooser/featured-image.png title=/posts/i3-workspace-chooser/featured-image.png></div><div class="details toc" id=toc-static kept>
-<div class="details-summary toc-title">
-<span>Contents</span>
-<span><i class="details-icon fas fa-angle-right"></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div>
-</div><div class=content id=content><p>After working with I3 I&rsquo;ve got a few window layouts I like for various tasks.</p>
-<p>This script is available on my <a href=https://github.com/AarynSmith/I3-Workspace-Chooser target=_blank rel="noopener noreffer">Github</a>.</p>
-<p>I&rsquo;m a creature of habit, and I like to have my window layouts in a consistent layout. I have one layout for working on this blog, two columns. The first column has VIM, a free terminal, and hugo server, and the second column is a browser window showing a preview of my blog as I update it. Another layout I&rsquo;ve been using while writing the <a href=/tags/euler/ rel>Project Euler</a> posts, which is similar to the blog layout, but one less terminal window on the left, and all of the terminals are pointed to a different directory.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=featured-image.png data-srcset="/posts/i3-workspace-chooser/featured-image.png, featured-image.png 1.5x, /posts/i3-workspace-chooser/featured-image.png 2x" data-sizes=auto alt=/posts/i3-workspace-chooser/featured-image.png title=Screenshot></p>
-<p><em>Here you can see my blogging layout, as well as my Workspace chooser.</em></p>
-<p>I&rsquo;m already using <a href=https://github.com/DaveDavenport/rofi target=_blank rel="noopener noreffer">rofi</a> for a program launcher, so I wanted to use it&rsquo;s dmenu replacement mode to display a list of predefined workspaces, and run a script based on the selection.</p>
-<p>Now, when I want to setup a new workspace, I can open each of the windows I want and arrange them to my liking, then use <a href=https://i3wm.org/docs/layout-saving.html target=_blank rel="noopener noreffer">i3-save-tree</a> to save the layout to a JSON file and modifying it , then I create a shell script with a series of i3-msg commands to launch various programs. The issue I ran into however was I wanted the terminals to open in specific directories, and run a program, but then to remain open after the program (i.e. VIM) had closed. In order to accomplish this I had to add a small tweak to my shell&rsquo;s rc file.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"><title>I3 Workspace Chooser - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="I3 Workspace Chooser">
+<meta property="og:description" content="After working with I3 I&rsquo;ve got a few window layouts I like for various tasks."><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/i3-workspace-chooser/"><meta property="og:image" content="https://aarynsmith.com/posts/i3-workspace-chooser/featured-image.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-25T00:00:00+00:00"><meta property="article:modified_time" content="2018-05-25T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/posts/i3-workspace-chooser/featured-image.png"><meta name=twitter:title content="I3 Workspace Chooser"><meta name=twitter:description content="After working with I3 I&rsquo;ve got a few window layouts I like for various tasks."><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/i3-workspace-chooser/><link rel=prev href=https://aarynsmith.com/posts/project-euler-4-6/><link rel=next href=https://aarynsmith.com/posts/project-euler-7-9/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"I3 Workspace Chooser","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/i3-workspace-chooser\/"},"genre":"posts","keywords":"i3wm, linux, scripting","wordcount":887,"url":"https:\/\/aarynsmith.com\/posts\/i3-workspace-chooser\/","datePublished":"2018-05-25T00:00:00+00:00","dateModified":"2018-05-25T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">I3 Workspace Chooser</h1><h2 class=single-subtitle>Creating an workspace chooser for I3</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-05-25>2018-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;887 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div></div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=featured-image.png data-srcset="/posts/i3-workspace-chooser/featured-image.png, featured-image.png 1.5x, /posts/i3-workspace-chooser/featured-image.png 2x" data-sizes=auto alt=/posts/i3-workspace-chooser/featured-image.png title=/posts/i3-workspace-chooser/featured-image.png></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div></div><div class=content id=content><p>After working with I3 I&rsquo;ve got a few window layouts I like for various tasks.</p><p>This script is available on my <a href=https://github.com/AarynSmith/I3-Workspace-Chooser target=_blank rel="noopener noreffer">Github</a>.</p><p>I&rsquo;m a creature of habit, and I like to have my window layouts in a consistent layout. I have one layout for working on this blog, two columns. The first column has VIM, a free terminal, and hugo server, and the second column is a browser window showing a preview of my blog as I update it. Another layout I&rsquo;ve been using while writing the <a href=/tags/euler/ rel>Project Euler</a> posts, which is similar to the blog layout, but one less terminal window on the left, and all of the terminals are pointed to a different directory.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=featured-image.png data-srcset="/posts/i3-workspace-chooser/featured-image.png, featured-image.png 1.5x, /posts/i3-workspace-chooser/featured-image.png 2x" data-sizes=auto alt=/posts/i3-workspace-chooser/featured-image.png title=Screenshot></p><p><em>Here you can see my blogging layout, as well as my Workspace chooser.</em></p><p>I&rsquo;m already using <a href=https://github.com/DaveDavenport/rofi target=_blank rel="noopener noreffer">rofi</a> for a program launcher, so I wanted to use it&rsquo;s dmenu replacement mode to display a list of predefined workspaces, and run a script based on the selection.</p><p>Now, when I want to setup a new workspace, I can open each of the windows I want and arrange them to my liking, then use <a href=https://i3wm.org/docs/layout-saving.html target=_blank rel="noopener noreffer">i3-save-tree</a> to save the layout to a JSON file and modifying it , then I create a shell script with a series of i3-msg commands to launch various programs. The issue I ran into however was I wanted the terminals to open in specific directories, and run a program, but then to remain open after the program (i.e. VIM) had closed. In order to accomplish this I had to add a small tweak to my shell&rsquo;s rc file.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=k>if</span> <span class=o>[[</span> <span class=nv>$1</span> <span class=o>==</span> <span class=nb>eval</span> <span class=o>]]</span>
-<span class=k>then</span>
-    <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span>
-<span class=k>fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This snippet tells your shell that if the first argument is <code>eval</code>, to execute the following arguments. This allowed me to build up a command in my workspace shell script below to start a program in a specific target directory.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>i3-msg <span class=s1>&#39;workspace WorkSpaceName; exec &#34;i3-sensible-terminal -e zsh -is eval cd ~/Target_Directory/\; programName&#34;&#39;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This runs <code>i3-msg</code> telling it the workspace context (WorkSpaceName), and telling i3 to execute a command. The command being executed is <code>i3-sensible-terminal</code> which launches my terminal <code>urxvt</code> with the <code>-e</code> option, which runs another command. That command is my shell <code>zsh</code> with the <code>-i</code> and <code>-s</code> options. The <code>-i</code> option forces the shell to be interactive, and the <code>-s</code> reads the input from the command line. The command being run is <code>eval</code> which the snippet from above tells the shell to execute the following arguments, in this case a <code>cd</code> to a directory and then a program name.</p>
-<p>This combined with the <code>i3-msg</code> append_layout command to restore a <code>i3-save-tree</code> JSON layout to a workspace can give us the ability to restore a complete workspace. So I wrote a script that will look for the JSON layout files, format them for rofi, then execute the associated shell script with the layout chosen.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=k>if</span> <span class=o>[[</span> <span class=nv>$1</span> <span class=o>==</span> <span class=nb>eval</span> <span class=o>]]</span>
+</span></span><span class=line><span class=cl><span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span></code></pre></td></tr></table></div></div><p>This snippet tells your shell that if the first argument is <code>eval</code>, to execute the following arguments. This allowed me to build up a command in my workspace shell script below to start a program in a specific target directory.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>i3-msg <span class=s1>&#39;workspace WorkSpaceName; exec &#34;i3-sensible-terminal -e zsh -is eval cd ~/Target_Directory/\; programName&#34;&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>This runs <code>i3-msg</code> telling it the workspace context (WorkSpaceName), and telling i3 to execute a command. The command being executed is <code>i3-sensible-terminal</code> which launches my terminal <code>urxvt</code> with the <code>-e</code> option, which runs another command. That command is my shell <code>zsh</code> with the <code>-i</code> and <code>-s</code> options. The <code>-i</code> option forces the shell to be interactive, and the <code>-s</code> reads the input from the command line. The command being run is <code>eval</code> which the snippet from above tells the shell to execute the following arguments, in this case a <code>cd</code> to a directory and then a program name.</p><p>This combined with the <code>i3-msg</code> append_layout command to restore a <code>i3-save-tree</code> JSON layout to a workspace can give us the ability to restore a complete workspace. So I wrote a script that will look for the JSON layout files, format them for rofi, then execute the associated shell script with the layout chosen.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -114,28 +27,21 @@
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>shopt</span> -s extglob
-<span class=nb>declare</span> -A dmenu
-<span class=nv>WS_DIR</span><span class=o>=</span>~/Scripts/Workspaces/
-<span class=k>for</span> file in <span class=si>${</span><span class=nv>WS_DIR</span><span class=si>}</span>*.json
-<span class=k>do</span>
-    <span class=nv>dmenu</span><span class=o>+=([</span><span class=sb>`</span>basename <span class=si>${</span><span class=nv>file</span><span class=si>}</span><span class=sb>`</span><span class=o>]=</span><span class=si>${</span><span class=nv>file</span><span class=si>}</span><span class=o>)</span>
-<span class=k>done</span>
-<span class=nv>workspace</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=k>$(</span><span class=nb>printf</span> <span class=s2>&#34;%s\n&#34;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=p>!dmenu[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2>&#34;</span> <span class=p>|</span> rofi -i -dmenu<span class=k>)</span>
-
-<span class=k>if</span> <span class=o>[</span> ! -z <span class=s2>&#34;</span><span class=nv>$workspace</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span>
-<span class=k>then</span>
-    <span class=nv>scriptname</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>WS_DIR</span><span class=si>}</span><span class=k>$(</span>basename <span class=si>${</span><span class=nv>dmenu</span><span class=p>[</span><span class=si>${</span><span class=nv>workspace</span><span class=si>}</span><span class=p>]</span><span class=si>}</span> .json<span class=k>)</span><span class=s2>.sh&#34;</span>
-    <span class=nb>exec</span> sh <span class=si>${</span><span class=nv>scriptname</span><span class=si>}</span>
-<span class=k>fi</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This combined with your JSON and shell script files will show you a rofi menu, allowing you to select the workspace you want to launch, then launch the layout on the workspace defined in the shell script. Below is a sample JSON and shell script that will launch two terminals, one running vim and one open and a web browser on workspace 9. You will notice in the shell scripts, a short sleep between opening similar windows (i.e. two terminals). This is to prevent the terminals from opening in the wrong order.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>shopt</span> -s extglob
+</span></span><span class=line><span class=cl><span class=nb>declare</span> -A dmenu
+</span></span><span class=line><span class=cl><span class=nv>WS_DIR</span><span class=o>=</span>~/Scripts/Workspaces/
+</span></span><span class=line><span class=cl><span class=k>for</span> file in <span class=si>${</span><span class=nv>WS_DIR</span><span class=si>}</span>*.json
+</span></span><span class=line><span class=cl><span class=k>do</span>
+</span></span><span class=line><span class=cl>    <span class=nv>dmenu</span><span class=o>+=([</span><span class=sb>`</span>basename <span class=si>${</span><span class=nv>file</span><span class=si>}</span><span class=sb>`</span><span class=o>]=</span><span class=si>${</span><span class=nv>file</span><span class=si>}</span><span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span><span class=line><span class=cl><span class=nv>workspace</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=k>$(</span><span class=nb>printf</span> <span class=s2>&#34;%s\n&#34;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=p>!dmenu[@]</span><span class=si>}</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2>&#34;</span> <span class=p>|</span> rofi -i -dmenu<span class=k>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> ! -z <span class=s2>&#34;</span><span class=nv>$workspace</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=nv>scriptname</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>WS_DIR</span><span class=si>}</span><span class=k>$(</span>basename <span class=si>${</span><span class=nv>dmenu</span><span class=p>[</span><span class=si>${</span><span class=nv>workspace</span><span class=si>}</span><span class=p>]</span><span class=si>}</span> .json<span class=k>)</span><span class=s2>.sh&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>exec</span> sh <span class=si>${</span><span class=nv>scriptname</span><span class=si>}</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span></code></pre></td></tr></table></div></div><p>This combined with your JSON and shell script files will show you a rofi menu, allowing you to select the workspace you want to launch, then launch the layout on the workspace defined in the shell script. Below is a sample JSON and shell script that will launch two terminals, one running vim and one open and a web browser on workspace 9. You will notice in the shell scripts, a short sleep between opening similar windows (i.e. two terminals). This is to prevent the terminals from opening in the wrong order.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -212,133 +118,93 @@
 </span><span class=lnt>75
 </span><span class=lnt>76
 </span><span class=lnt>77
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=err>//</span> <span class=err>vim:ts=</span><span class=mi>4</span><span class=err>:sw=</span><span class=mi>4</span><span class=err>:et</span>
-<span class=p>{</span>
-    <span class=err>//</span> <span class=err>splitv</span> <span class=err>split</span> <span class=err>container</span> <span class=err>with</span> <span class=err>2</span> <span class=err>children</span>
-    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;normal&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;layout&#34;</span><span class=p>:</span> <span class=s2>&#34;splitv&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
-    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;nodes&#34;</span><span class=p>:</span> <span class=p>[</span>
-        <span class=p>{</span>
-            <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
-            <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
-               <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>390</span><span class=p>,</span>
-               <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>566</span><span class=p>,</span>
-               <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
-               <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>0</span>
-            <span class=p>},</span>
-            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;vim&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
-            <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
-               <span class=p>{</span>
-               <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^URxvt$&#34;</span>
-            <span class=err>]</span><span class=p>,</span>
-            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=err>//</span> <span class=err>splith</span> <span class=err>split</span> <span class=err>container</span> <span class=err>with</span> <span class=err>1</span> <span class=err>children</span>
-            <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;normal&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;layout&#34;</span><span class=p>:</span> <span class=s2>&#34;splith&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
-            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span><span class=p>,</span>
-            <span class=nt>&#34;nodes&#34;</span><span class=p>:</span> <span class=p>[</span>
-                <span class=p>{</span>
-                    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
-                    <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
-                    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
-                    <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
-                       <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>390</span><span class=p>,</span>
-                       <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>566</span><span class=p>,</span>
-                       <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
-                       <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>0</span>
-                    <span class=p>},</span>
-                    <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;URxvt&#34;</span><span class=p>,</span>
-                    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
-                    <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
-                       <span class=p>{</span>
-                       <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^URxvt$&#34;</span>
-                    <span class=err>]</span><span class=p>,</span>
-                    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
-                <span class=p>}</span>
-            <span class=p>]</span>
-        <span class=p>}</span>
-    <span class=p>]</span>
-<span class=p>}</span>
-
-<span class=p>{</span>
-    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
-    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
-       <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>600</span><span class=p>,</span>
-       <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>800</span><span class=p>,</span>
-       <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>50</span><span class=p>,</span>
-       <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>50</span>
-    <span class=p>},</span>
-    <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;DuckDuckGo — Privacy, simplified. - qutebrowser&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
-    <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
-       <span class=p>{</span>
-       <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^qutebrowser$&#34;</span>
-       <span class=p>}</span>
-    <span class=p>],</span>
-    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=c1>// vim:ts=4:sw=4:et
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// splitv split container with 2 children
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;normal&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;layout&#34;</span><span class=p>:</span> <span class=s2>&#34;splitv&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;nodes&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>               <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>390</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>               <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>566</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>               <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>               <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;vim&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>               <span class=p>{</span>
+</span></span><span class=line><span class=cl>               <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^URxvt$&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=err>]</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=c1>// splith split container with 1 children
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;normal&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;layout&#34;</span><span class=p>:</span> <span class=s2>&#34;splith&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;nodes&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                       <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>390</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>566</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>                    <span class=p>},</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;URxvt&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                       <span class=p>{</span>
+</span></span><span class=line><span class=cl>                       <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^URxvt$&#34;</span>
+</span></span><span class=line><span class=cl>                    <span class=err>]</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;border&#34;</span><span class=p>:</span> <span class=s2>&#34;pixel&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;current_border_width&#34;</span><span class=p>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;floating&#34;</span><span class=p>:</span> <span class=s2>&#34;auto_off&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;geometry&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>       <span class=nt>&#34;height&#34;</span><span class=p>:</span> <span class=mi>600</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nt>&#34;width&#34;</span><span class=p>:</span> <span class=mi>800</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nt>&#34;x&#34;</span><span class=p>:</span> <span class=mi>50</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nt>&#34;y&#34;</span><span class=p>:</span> <span class=mi>50</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;DuckDuckGo — Privacy, simplified. - qutebrowser&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;percent&#34;</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;swallows&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>       <span class=p>{</span>
+</span></span><span class=line><span class=cl>       <span class=nt>&#34;class&#34;</span><span class=p>:</span> <span class=s2>&#34;^qutebrowser$&#34;</span>
+</span></span><span class=line><span class=cl>       <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;con&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>i3-msg <span class=s1>&#39;workspace 9; append_layout ~/Path/To/Workspaces/Example.json&#39;</span>
-i3-msg <span class=s1>&#39;workspace 9; exec &#34;i3-sensible-terminal -e zsh -is eval cd ~/Path/To/Project\; vim&#34;&#39;</span>
-sleep .1
-i3-msg <span class=s1>&#39;workspace 9; exec &#34;i3-sensible-terminal -e zsh -i eval cd ~/Path/To/Project&#34;&#39;</span>
-i3-msg <span class=s1>&#39;workspace 9; exec qutebrowser&#39;</span>
-</code></pre></td></tr></table>
-</div>
-</div></div><div class=post-footer id=post-footer>
-<div class=post-info>
-<div class=post-info-line>
-<div class=post-info-mod>
-<span>Updated on 2018-05-25</span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
-<div class=post-info-md></div>
-<div class=post-info-share>
-<span></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/i3wm/>i3wm</a>,&nbsp;<a href=/tags/linux/>linux</a>,&nbsp;<a href=/tags/scripting/>scripting</a></section>
-<section>
-<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
-</section>
-</div><div class=post-nav><a href=/posts/project-euler-4-6/ class=prev rel=prev title="Project Euler 4 - 6"><i class="fas fa-angle-left fa-fw"></i>Project Euler 4 - 6</a>
-<a href=/posts/project-euler-7-9/ class=next rel=next title="Project Euler 7 - 9">Project Euler 7 - 9<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div>
-</main><footer class=footer>
-<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
-<i class="fas fa-arrow-up fa-fw"></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments">
-<i class="fas fa-comment fa-fw"></i>
-</a>
-</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body>
-</html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>i3-msg <span class=s1>&#39;workspace 9; append_layout ~/Path/To/Workspaces/Example.json&#39;</span>
+</span></span><span class=line><span class=cl>i3-msg <span class=s1>&#39;workspace 9; exec &#34;i3-sensible-terminal -e zsh -is eval cd ~/Path/To/Project\; vim&#34;&#39;</span>
+</span></span><span class=line><span class=cl>sleep .1
+</span></span><span class=line><span class=cl>i3-msg <span class=s1>&#39;workspace 9; exec &#34;i3-sensible-terminal -e zsh -i eval cd ~/Path/To/Project&#34;&#39;</span>
+</span></span><span class=line><span class=cl>i3-msg <span class=s1>&#39;workspace 9; exec qutebrowser&#39;</span>
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2018-05-25</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/i3wm/>i3wm</a>,&nbsp;<a href=/tags/linux/>linux</a>,&nbsp;<a href=/tags/scripting/>scripting</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/project-euler-4-6/ class=prev rel=prev title="Project Euler 4 - 6"><i class="fas fa-angle-left fa-fw"></i>Project Euler 4 - 6</a>
+<a href=/posts/project-euler-7-9/ class=next rel=next title="Project Euler 7 - 9">Project Euler 7 - 9<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body></html>

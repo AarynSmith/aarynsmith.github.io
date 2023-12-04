@@ -1,88 +1,9 @@
-<!doctype html><html lang>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="noodp">
-<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>Go REST API (Part 4) - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Go REST API (Part 4)">
-<meta property="og:description" content="So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with curl, but why not use Go&rsquo;s built in testing mechanism, go test?">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aarynsmith.com/posts/go-rest-api-part-4/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2018-05-01T00:00:00+00:00">
-<meta property="article:modified_time" content="2018-05-01T00:00:00+00:00">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://aarynsmith.com/logo.png">
-<meta name=twitter:title content="Go REST API (Part 4)">
-<meta name=twitter:description content="So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with curl, but why not use Go&rsquo;s built in testing mechanism, go test?">
-<meta name=application-name content="Aaryn Smith">
-<meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/go-rest-api-part-4/><link rel=prev href=https://aarynsmith.com/posts/go-rest-api-part-3/><link rel=next href=https://aarynsmith.com/posts/project-euler-1-3/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go REST API (Part 4)","inLanguage":"","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-4\/"},"genre":"posts","keywords":"Go, REST, api","wordcount":2101,"url":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-4\/","datePublished":"2018-05-01T00:00:00+00:00","dateModified":"2018-05-01T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
-<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu>
-<div class=menu-inner><a class=menu-item href=/resume/> Resumé </a><a class=menu-item href=/pages/about-me> About </a><a class=menu-item href=/posts/> Blog </a><a class=menu-item href=/projects/> Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
-<div class=header-container>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="Aaryn Smith">Aaryn Smith</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
-<span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
-<div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>Contents</h2>
-<div class="toc-content always-active" id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">Go REST API (Part 4)</h1><h2 class=single-subtitle>Testing REST server with Go Test</h2><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-05-01>2018-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2101 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
-</div><div class="details toc" id=toc-static kept>
-<div class="details-summary toc-title">
-<span>Contents</span>
-<span><i class="details-icon fas fa-angle-right"></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
-<ul>
-<li><a href=#test-setup>Test setup</a></li>
-<li><a href=#adding-tests>Adding Tests</a></li>
-<li><a href=#debugging-tests>Debugging Tests</a></li>
-<li><a href=#testing-unsuccessful-requests>Testing unsuccessful requests</a></li>
-<li><a href=#tests-tests-and-more-tests>Tests, Tests, and More Tests</a></li>
-<li><a href=#tests-with-bodies>Tests with Bodies</a></li>
-<li><a href=#replacing-user-tests>Replacing user tests</a></li>
-<li><a href=#conclusion>Conclusion</a></li>
-</ul>
-</nav></div>
-</div><div class=content id=content><p>So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with <code>curl</code>, but why not use Go&rsquo;s built in testing mechanism, <code>go test</code>?</p>
-<h2 id=test-setup>Test setup</h2>
-<p>We will start by creating our <code>main_test.go</code> file with a function for executing our request. This function will take an <code>http.Request</code> and a user database and respond with an <code>httptest.ResponseRecorder</code>. It will setup our server similar to the way our main function does, creating a new <code>app</code> instance, setting up the Router, and initializing the database.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=X-UA-Compatible content="IE=edge, chrome=1"><title>Go REST API (Part 4) - Aaryn Smith</title><meta name=Description content="Aaryn Smith"><meta property="og:title" content="Go REST API (Part 4)">
+<meta property="og:description" content="So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with curl, but why not use Go&rsquo;s built in testing mechanism, go test?"><meta property="og:type" content="article"><meta property="og:url" content="https://aarynsmith.com/posts/go-rest-api-part-4/"><meta property="og:image" content="https://aarynsmith.com/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-01T00:00:00+00:00"><meta property="article:modified_time" content="2018-05-01T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://aarynsmith.com/logo.png"><meta name=twitter:title content="Go REST API (Part 4)"><meta name=twitter:description content="So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with curl, but why not use Go&rsquo;s built in testing mechanism, go test?"><meta name=application-name content="Aaryn Smith"><meta name=apple-mobile-web-app-title content="Aaryn Smith"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://aarynsmith.com/posts/go-rest-api-part-4/><link rel=prev href=https://aarynsmith.com/posts/go-rest-api-part-3/><link rel=next href=https://aarynsmith.com/posts/project-euler-1-3/><link rel=stylesheet href=/lib/normalize/normalize.min.055364f5be272caa092b0e6654c165828707f8ab971e2656383a6d6392bc345e.css integrity="sha256-BVNk9b4nLKoJKw5mVMFlgocH+KuXHiZWODptY5K8NF4="><link rel=stylesheet href=/css/style.min.2537da3a877022fb783322b88b497954c6248b3da171c8cb2d97a620c8254ba6.css integrity="sha256-JTfaOodwIvt4MyK4i0l5VMYkiz2hccjLLZemIMglS6Y="><link rel=stylesheet href=/lib/fontawesome-free/all.min.876d023d9d10c97941b80c3b03e2a5b94631ff7a4af9cee5604a6a2d39718d84.css integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go REST API (Part 4)","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-4\/"},"genre":"posts","keywords":"Go, REST, api","wordcount":2101,"url":"https:\/\/aarynsmith.com\/posts\/go-rest-api-part-4\/","datePublished":"2018-05-01T00:00:00+00:00","dateModified":"2018-05-01T00:00:00+00:00","publisher":{"@type":"Organization","name":"Aaryn Smith"},"author":{"@type":"Person","name":"Aaryn Smith"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/resume/>Resumé </a><a class=menu-item href=/pages/about-me>About </a><a class=menu-item href=/posts/>Blog </a><a class=menu-item href=/projects/>Projects </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Aaryn Smith">Aaryn Smith</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/resume/ title>Resumé</a><a class=menu-item href=/pages/about-me title>About</a><a class=menu-item href=/posts/ title>Blog</a><a class=menu-item href=/projects/ title>Projects</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class="toc-content always-active" id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Go REST API (Part 4)</h1><h2 class=single-subtitle>Testing REST server with Go Test</h2><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Aaryn Smith</a></span>&nbsp;<span class=post-category>included in <a href=/categories/blog/><i class="far fa-folder fa-fw"></i>Blog</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2018-05-01>2018-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2101 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#test-setup>Test setup</a></li><li><a href=#adding-tests>Adding Tests</a></li><li><a href=#debugging-tests>Debugging Tests</a></li><li><a href=#testing-unsuccessful-requests>Testing unsuccessful requests</a></li><li><a href=#tests-tests-and-more-tests>Tests, Tests, and More Tests</a></li><li><a href=#tests-with-bodies>Tests with Bodies</a></li><li><a href=#replacing-user-tests>Replacing user tests</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div><div class=content id=content><p>So we&rsquo;ve built a working API server, but the only way we&rsquo;ve tested the endpoints is by hammering them with <code>curl</code>, but why not use Go&rsquo;s built in testing mechanism, <code>go test</code>?</p><h2 id=test-setup>Test setup</h2><p>We will start by creating our <code>main_test.go</code> file with a function for executing our request. This function will take an <code>http.Request</code> and a user database and respond with an <code>httptest.ResponseRecorder</code>. It will setup our server similar to the way our main function does, creating a new <code>app</code> instance, setting up the Router, and initializing the database.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -99,32 +20,24 @@
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
-
-<span class=kn>import</span> <span class=p>(</span>
-    <span class=s>&#34;net/http&#34;</span>
-    <span class=s>&#34;net/http/httptest&#34;</span>
-
-    <span class=s>&#34;github.com/gorilla/mux&#34;</span>
-<span class=p>)</span>
-
-<span class=kd>func</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>,</span> <span class=nx>db</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>)</span> <span class=o>*</span><span class=nx>httptest</span><span class=p>.</span><span class=nx>ResponseRecorder</span> <span class=p>{</span>
-    <span class=nx>rr</span> <span class=o>:=</span> <span class=nx>httptest</span><span class=p>.</span><span class=nf>NewRecorder</span><span class=p>()</span>
-    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=nx>db</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>ServeHTTP</span><span class=p>(</span><span class=nx>rr</span><span class=p>,</span> <span class=nx>req</span><span class=p>)</span>
-    <span class=k>return</span> <span class=nx>rr</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=adding-tests>Adding Tests</h2>
-<p>We&rsquo;ll also need to write some tests. Let&rsquo;s start with testing our <code>app.GetUser</code> function. I&rsquo;m a big fan of table driven testing. We&rsquo;ll setup a list of tests, and expected results and let Go iterate over the table checking our input and comparing it to our expected outcomes.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;net/http&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;net/http/httptest&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=s>&#34;github.com/gorilla/mux&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>,</span> <span class=nx>db</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>)</span> <span class=o>*</span><span class=nx>httptest</span><span class=p>.</span><span class=nx>ResponseRecorder</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>rr</span> <span class=o>:=</span> <span class=nx>httptest</span><span class=p>.</span><span class=nf>NewRecorder</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=nx>db</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>ServeHTTP</span><span class=p>(</span><span class=nx>rr</span><span class=p>,</span> <span class=nx>req</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>rr</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=adding-tests>Adding Tests</h2><p>We&rsquo;ll also need to write some tests. Let&rsquo;s start with testing our <code>app.GetUser</code> function. I&rsquo;m a big fan of table driven testing. We&rsquo;ll setup a list of tests, and expected results and let Go iterate over the table checking our input and comparing it to our expected outcomes.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -152,63 +65,47 @@
 </span><span class=lnt>26
 </span><span class=lnt>27
 </span><span class=lnt>28
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Test_app_GetUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
-        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
-        <span class=nx>method</span>       <span class=kt>string</span>
-        <span class=nx>request</span>      <span class=kt>string</span>
-        <span class=nx>expectedCode</span> <span class=kt>int</span>
-    <span class=p>}{</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
-        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=kc>nil</span><span class=p>)</span>
-        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
-        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
-            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Here we see we&rsquo;ve setup a database with 1 user named &ldquo;User 1&rdquo; with a role of &ldquo;Admin&rdquo;, and we are going to issue a GET request to our server to /user/1. We expect to get a 200 back. We tell the package to range over the <code>tests</code> variable and create a new <code>http.Request</code> using our <code>tests.method</code> and <code>tests.request</code> strings and run the request through our test method defined above with the <code>tests.database</code> user database. The response from that request is then compared to our <code>tests.expectedCode</code> and the test fails if it does not match.</p>
-<p>So let&rsquo;s go ahead and run our tests:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Test_app_GetUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
+</span></span><span class=line><span class=cl>        <span class=nx>method</span>       <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>request</span>      <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>expectedCode</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>    <span class=p>}{</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=kc>nil</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Here we see we&rsquo;ve setup a database with 1 user named &ldquo;User 1&rdquo; with a role of &ldquo;Admin&rdquo;, and we are going to issue a GET request to our server to /user/1. We expect to get a 200 back. We tell the package to range over the <code>tests</code> variable and create a new <code>http.Request</code> using our <code>tests.method</code> and <code>tests.request</code> strings and run the request through our test method defined above with the <code>tests.database</code> user database. The response from that request is then compared to our <code>tests.expectedCode</code> and the test fails if it does not match.</p><p>So let&rsquo;s go ahead and run our tests:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ go <span class=nb>test</span>
---- FAIL: Test_app_GetUser <span class=o>(</span>0.00s<span class=o>)</span>
-        main_test.go:45: Expected response code 200. Got 404.
-FAIL
-<span class=nb>exit</span> status <span class=m>1</span>
-FAIL    github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api       0.004s
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=debugging-tests>Debugging Tests</h2>
-<p>Hmm&mldr; A 404 error. Why didn&rsquo;t we get the 200 response we expected? Let&rsquo;s look at our code. In our <code>main.go</code> we have the following:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go <span class=nb>test</span>
+</span></span><span class=line><span class=cl>--- FAIL: Test_app_GetUser <span class=o>(</span>0.00s<span class=o>)</span>
+</span></span><span class=line><span class=cl>        main_test.go:45: Expected response code 200. Got 404.
+</span></span><span class=line><span class=cl>FAIL
+</span></span><span class=line><span class=cl><span class=nb>exit</span> status <span class=m>1</span>
+</span></span><span class=line><span class=cl>FAIL    github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api       0.004s
+</span></span></code></pre></td></tr></table></div></div><h2 id=debugging-tests>Debugging Tests</h2><p>Hmm&mldr; A 404 error. Why didn&rsquo;t we get the 200 response we expected? Let&rsquo;s look at our code. In our <code>main.go</code> we have the following:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -230,36 +127,29 @@ FAIL    github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>20
 </span><span class=lnt>21
 </span><span class=lnt>22
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-        <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-            <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-            <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-            <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=s>&#34;:3001&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>DeleteUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;DELETE&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>ReplaceUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PUT&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>UpdateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PATCH&#34;</span><span class=p>)</span>
-    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Our endpoint handles are defined in the Run function, but in our <code>main_test.go</code> we don&rsquo;t add those because the Run function actually spins the server up with the <code>http.ListenAndServe</code> call. Let&rsquo;s move our <code>Router.HandleFunc</code> definitions to a new function we can add to our <code>executeRequest</code> function in <code>main_test.go</code>. Here is our updated <code>main.go</code>:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=s>&#34;:3001&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>DeleteUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;DELETE&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>ReplaceUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PUT&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>UpdateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PATCH&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Our endpoint handles are defined in the Run function, but in our <code>main_test.go</code> we don&rsquo;t add those because the Run function actually spins the server up with the <code>http.ListenAndServe</code> call. Let&rsquo;s move our <code>Router.HandleFunc</code> definitions to a new function we can add to our <code>executeRequest</code> function in <code>main_test.go</code>. Here is our updated <code>main.go</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -285,40 +175,33 @@ FAIL    github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>24
 </span><span class=lnt>25
 </span><span class=lnt>26
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-        <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-            <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-            <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-            <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nf>AddHandles</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=s>&#34;:3001&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>AddHandles</span><span class=p>()</span> <span class=p>{</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>DeleteUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;DELETE&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>ReplaceUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PUT&#34;</span><span class=p>)</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>UpdateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PATCH&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
-    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>And here&rsquo;s the new version of our <code>executeRequest</code> function:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nf>AddHandles</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nf>Run</span><span class=p>(</span><span class=s>&#34;:3001&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>AddHandles</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>GetUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;GET&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>CreateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;POST&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>DeleteUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;DELETE&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>ReplaceUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PUT&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/user/{id:[0-9]+}&#34;</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>UpdateUser</span><span class=p>).</span><span class=nf>Methods</span><span class=p>(</span><span class=s>&#34;PATCH&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>app</span><span class=p>)</span> <span class=nf>Run</span><span class=p>(</span><span class=nx>addr</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>log</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Listening on %v&#34;</span><span class=p>,</span> <span class=nx>addr</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=nx>addr</span><span class=p>,</span> <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>And here&rsquo;s the new version of our <code>executeRequest</code> function:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -327,38 +210,22 @@ FAIL    github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>,</span> <span class=nx>db</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>)</span> <span class=o>*</span><span class=nx>httptest</span><span class=p>.</span><span class=nx>ResponseRecorder</span> <span class=p>{</span>
-    <span class=nx>rr</span> <span class=o>:=</span> <span class=nx>httptest</span><span class=p>.</span><span class=nf>NewRecorder</span><span class=p>()</span>
-    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{}</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nf>AddHandles</span><span class=p>()</span>
-    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>ServeHTTP</span><span class=p>(</span><span class=nx>rr</span><span class=p>,</span> <span class=nx>req</span><span class=p>)</span>
-    <span class=k>return</span> <span class=nx>rr</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Now let&rsquo;s re-run our tests and see if we get a pass:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>,</span> <span class=nx>db</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>)</span> <span class=o>*</span><span class=nx>httptest</span><span class=p>.</span><span class=nx>ResponseRecorder</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>rr</span> <span class=o>:=</span> <span class=nx>httptest</span><span class=p>.</span><span class=nf>NewRecorder</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span> <span class=o>:=</span> <span class=nx>app</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span> <span class=p>=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>UserDB</span> <span class=p>=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nf>AddHandles</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a</span><span class=p>.</span><span class=nx>Router</span><span class=p>.</span><span class=nf>ServeHTTP</span><span class=p>(</span><span class=nx>rr</span><span class=p>,</span> <span class=nx>req</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>rr</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Now let&rsquo;s re-run our tests and see if we get a pass:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ go <span class=nb>test</span>
-PASS
-ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api      0.004s
-</code></pre></td></tr></table>
-</div>
-</div><p>Awesome. Our single test is passing. Now let&rsquo;s add some more tests.</p>
-<h2 id=testing-unsuccessful-requests>Testing unsuccessful requests</h2>
-<p>We&rsquo;ll write some more tests now for some of the ways requests might fail as well. What if we request a user that doesn&rsquo;t exist? It should respond with a 404:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go <span class=nb>test</span>
+</span></span><span class=line><span class=cl>PASS
+</span></span><span class=line><span class=cl>ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api      0.004s
+</span></span></code></pre></td></tr></table></div></div><p>Awesome. Our single test is passing. Now let&rsquo;s add some more tests.</p><h2 id=testing-unsuccessful-requests>Testing unsuccessful requests</h2><p>We&rsquo;ll write some more tests now for some of the ways requests might fail as well. What if we request a user that doesn&rsquo;t exist? It should respond with a 404:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -379,35 +246,28 @@ ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>19
 </span><span class=lnt>20
 </span><span class=lnt>21
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=o>...</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/2&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-<span class=o>...</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>This adds tests for getting a 2nd user when only a 1 exists in the database, as well as getting user ID 1 when the database is empty. Another test we can write is what if an ID is provided in the URL that is too large to be represented as an integer? This should fail with a 500 error when <code>strcov.Atoi()</code> returns an error. We should probably test that as well. Let&rsquo;s add at test as follows:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/2&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span></code></pre></td></tr></table></div></div><p>This adds tests for getting a 2nd user when only a 1 exists in the database, as well as getting user ID 1 when the database is empty. Another test we can write is what if an ID is provided in the URL that is too large to be represented as an integer? This should fail with a 500 error when <code>strcov.Atoi()</code> returns an error. We should probably test that as well. Let&rsquo;s add at test as follows:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -415,24 +275,15 @@ ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=o>...</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-<span class=o>...</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Great, the only failure mode we haven&rsquo;t caught is if <code>json.Marshal</code> is unable to marshal our user struct, which should never happen since it&rsquo;s made up of basic data types like strings and integers.</p>
-<h2 id=tests-tests-and-more-tests>Tests, Tests, and More Tests</h2>
-<p>Now we can continue through replicating our <code>Test_app_GetUser</code> function for our other endpoint functions. First we&rsquo;ll start with <code>app.DeleteUser</code>. We&rsquo;ll do similar tests to the ones we wrote before. One test to delete an existing user, returning a 200. One test to delete a non-existent user, returning a 404. And finally, a test deleting a user with an overflowing ID, which will fail with a 500.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span></code></pre></td></tr></table></div></div><p>Great, the only failure mode we haven&rsquo;t caught is if <code>json.Marshal</code> is unable to marshal our user struct, which should never happen since it&rsquo;s made up of basic data types like strings and integers.</p><h2 id=tests-tests-and-more-tests>Tests, Tests, and More Tests</h2><p>Now we can continue through replicating our <code>Test_app_GetUser</code> function for our other endpoint functions. First we&rsquo;ll start with <code>app.DeleteUser</code>. We&rsquo;ll do similar tests to the ones we wrote before. One test to delete an existing user, returning a 200. One test to delete a non-existent user, returning a 404. And finally, a test deleting a user with an overflowing ID, which will fail with a 500.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -472,57 +323,47 @@ ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>38
 </span><span class=lnt>39
 </span><span class=lnt>40
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Test_app_DeleteUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
-        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
-        <span class=nx>method</span>       <span class=kt>string</span>
-        <span class=nx>request</span>      <span class=kt>string</span>
-        <span class=nx>expectedCode</span> <span class=kt>int</span>
-    <span class=p>}{</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
-        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=kc>nil</span><span class=p>)</span>
-        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
-        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
-            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>For our other endpoints we&rsquo;ll have to add a few other options to our tests. Since <code>app.CreateUser</code>, <code>app.UpdateUser</code> and <code>app.ReplaceUser</code> all require data from the request body we&rsquo;ll have to provide that in our test as well.</p>
-<h2 id=tests-with-bodies>Tests with Bodies</h2>
-<p>We&rsquo;ll start with replicating our first curl test in a go test. For reference, our first curl request (from part 2) was <code>curl -i -X POST http://127.0.0.1:3001/user -d'{"name": "User 2","role":"User"}'</code></p>
-<p>We&rsquo;ll add a body field to our <code>tests</code> table, and assign it the value from our curl -d flag above. Then we can use that in our <code>http.NewRequest</code> in the third argument, which has been <code>nil</code> up until now. The problem is the <code>http.NewRequest</code> third argument takes an <code>io.Reader</code> not a string, so, we&rsquo;ll have to convert our body to an <code>io.Reader</code> using <code>string.NewReader</code> which takes a string and returns an <code>io.Reader</code>.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Test_app_DeleteUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
+</span></span><span class=line><span class=cl>        <span class=nx>method</span>       <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>request</span>      <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>expectedCode</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>    <span class=p>}{</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;DELETE&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=kc>nil</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>For our other endpoints we&rsquo;ll have to add a few other options to our tests. Since <code>app.CreateUser</code>, <code>app.UpdateUser</code> and <code>app.ReplaceUser</code> all require data from the request body we&rsquo;ll have to provide that in our test as well.</p><h2 id=tests-with-bodies>Tests with Bodies</h2><p>We&rsquo;ll start with replicating our first curl test in a go test. For reference, our first curl request (from part 2) was <code>curl -i -X POST http://127.0.0.1:3001/user -d'{"name": "User 2","role":"User"}'</code></p><p>We&rsquo;ll add a body field to our <code>tests</code> table, and assign it the value from our curl -d flag above. Then we can use that in our <code>http.NewRequest</code> in the third argument, which has been <code>nil</code> up until now. The problem is the <code>http.NewRequest</code> third argument takes an <code>io.Reader</code> not a string, so, we&rsquo;ll have to convert our body to an <code>io.Reader</code> using <code>string.NewReader</code> which takes a string and returns an <code>io.Reader</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -554,46 +395,39 @@ ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>30
 </span><span class=lnt>31
 </span><span class=lnt>32
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Test_app_CreateUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
-        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
-        <span class=nx>method</span>       <span class=kt>string</span>
-        <span class=nx>request</span>      <span class=kt>string</span>
-        <span class=nx>body</span>         <span class=kt>string</span>
-        <span class=nx>expectedCode</span> <span class=kt>int</span>
-    <span class=p>}{</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;POST&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
-        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
-        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
-        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
-        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%s %s: %+v\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Body</span><span class=p>.</span><span class=nf>String</span><span class=p>())</span>
-        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
-            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>With this test we can also try to pass some invalid JSON input in the body. We&rsquo;ll add another test with some malformed JSON and we should get back a 500 server error, because <code>json.Unmarshal</code> should return an error.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Test_app_CreateUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
+</span></span><span class=line><span class=cl>        <span class=nx>method</span>       <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>request</span>      <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span>         <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>expectedCode</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>    <span class=p>}{</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;POST&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%s %s: %+v\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Body</span><span class=p>.</span><span class=nf>String</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>With this test we can also try to pass some invalid JSON input in the body. We&rsquo;ll add another test with some malformed JSON and we should get back a 500 server error, because <code>json.Unmarshal</code> should return an error.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -608,44 +442,28 @@ ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=o>...</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;POST&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-<span class=o>...</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Now if we run our tests:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=o>...</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;POST&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=o>...</span>
+</span></span></code></pre></td></tr></table></div></div><p>Now if we run our tests:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ go <span class=nb>test</span>
-PASS
-ok      github.com/AarynSmith/go-rest-api       0.005s
-</code></pre></td></tr></table>
-</div>
-</div><p>Awesome. Only thing left to test is Replacing and Updating users.</p>
-<h2 id=replacing-user-tests>Replacing user tests</h2>
-<p>Again very similar to our create user tests we&rsquo;ll create the tests for <code>app.ReplaceUser</code>, changing our method to PUT and the request to point to &ldquo;/user/1&rdquo;.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go <span class=nb>test</span>
+</span></span><span class=line><span class=cl>PASS
+</span></span><span class=line><span class=cl>ok      github.com/AarynSmith/go-rest-api       0.005s
+</span></span></code></pre></td></tr></table></div></div><p>Awesome. Only thing left to test is Replacing and Updating users.</p><h2 id=replacing-user-tests>Replacing user tests</h2><p>Again very similar to our create user tests we&rsquo;ll create the tests for <code>app.ReplaceUser</code>, changing our method to PUT and the request to point to &ldquo;/user/1&rdquo;.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -689,58 +507,51 @@ ok      github.com/AarynSmith/go-rest-api       0.005s
 </span><span class=lnt>42
 </span><span class=lnt>43
 </span><span class=lnt>44
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Test_app_ReplaceUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
-        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
-        <span class=nx>method</span>       <span class=kt>string</span>
-        <span class=nx>request</span>      <span class=kt>string</span>
-        <span class=nx>body</span>         <span class=kt>string</span>
-        <span class=nx>expectedCode</span> <span class=kt>int</span>
-    <span class=p>}{</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
-        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
-        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
-        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
-        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
-            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>We&rsquo;ll also want to copy our tests from before with overflowing IDs, as well as writing a test for an ID that doesn&rsquo;t exist.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Test_app_ReplaceUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
+</span></span><span class=line><span class=cl>        <span class=nx>method</span>       <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>request</span>      <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span>         <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>expectedCode</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>    <span class=p>}{</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>We&rsquo;ll also want to copy our tests from before with overflowing IDs, as well as writing a test for an ID that doesn&rsquo;t exist.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -754,28 +565,21 @@ ok      github.com/AarynSmith/go-rest-api       0.005s
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go>        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>And replicate the same tests for our the PATCH method, however we&rsquo;ll split the first test into two, one updating the name, and the second updating the role.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PUT&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span></code></pre></td></tr></table></div></div><p>And replicate the same tests for our the PATCH method, however we&rsquo;ll split the first test into two, one updating the name, and the second updating the role.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -840,122 +644,79 @@ ok      github.com/AarynSmith/go-rest-api       0.005s
 </span><span class=lnt>63
 </span><span class=lnt>64
 </span><span class=lnt>65
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Test_app_UpdateUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
-        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
-        <span class=nx>method</span>       <span class=kt>string</span>
-        <span class=nx>request</span>      <span class=kt>string</span>
-        <span class=nx>body</span>         <span class=kt>string</span>
-        <span class=nx>expectedCode</span> <span class=kt>int</span>
-    <span class=p>}{</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
-                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
-                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
-                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
-                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
-                <span class=p>},</span>
-            <span class=p>},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;role&#34;: &#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
-        <span class=p>},</span>
-        <span class=p>{</span>
-            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
-            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
-            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
-            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
-            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
-        <span class=p>},</span>
-    <span class=p>}</span>
-    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
-        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
-        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
-        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
-        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
-            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=conclusion>Conclusion</h2>
-<p>At this point we can now run all the tests for our project and see what kind of code coverage we have.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>Test_app_UpdateUser</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tests</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>database</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span>
+</span></span><span class=line><span class=cl>        <span class=nx>method</span>       <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>request</span>      <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span>         <span class=kt>string</span>
+</span></span><span class=line><span class=cl>        <span class=nx>expectedCode</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>    <span class=p>}{</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=mi>1</span><span class=p>:</span> <span class=nx>user</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>ID</span><span class=p>:</span>   <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Name</span><span class=p>:</span> <span class=s>&#34;User 1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nx>Role</span><span class=p>:</span> <span class=s>&#34;Admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;role&#34;: &#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>200</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`Not a JSON string`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>404</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>database</span><span class=p>:</span>     <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>user</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>            <span class=nx>method</span><span class=p>:</span>       <span class=s>&#34;PATCH&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>request</span><span class=p>:</span>      <span class=s>&#34;/user/99999999999999999999&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>body</span><span class=p>:</span>         <span class=s>`{&#34;name&#34;: &#34;User 2&#34;,&#34;role&#34;:&#34;User&#34;}`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>expectedCode</span><span class=p>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>tt</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>tests</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>body</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>req</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>NewRequest</span><span class=p>(</span><span class=nx>tt</span><span class=p>.</span><span class=nx>method</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>request</span><span class=p>,</span> <span class=nx>body</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nx>response</span> <span class=o>:=</span> <span class=nf>executeRequest</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>database</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span> <span class=o>!=</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>t</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;Expected response code %d. Got %d.\n&#34;</span><span class=p>,</span> <span class=nx>tt</span><span class=p>.</span><span class=nx>expectedCode</span><span class=p>,</span> <span class=nx>response</span><span class=p>.</span><span class=nx>Code</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=conclusion>Conclusion</h2><p>At this point we can now run all the tests for our project and see what kind of code coverage we have.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>$ go <span class=nb>test</span> --cover
-PASS
-coverage: 90.6% of statements
-ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api       0.007s
-</code></pre></td></tr></table>
-</div>
-</div><p>Fantastic,we&rsquo;re covering 90% of our code. So we&rsquo;ve built a REST API server in Go, setup endpoints and tested those endpoints. Have I missed anything? Feel free to send me a message from the links below.</p>
-<p>Here is a gist of our <a href=https://gist.github.com/AarynSmith/03dae2ec1c729891a13d6647cfb34155#file-main-go target=_blank rel="noopener noreffer">main.go</a> and <a href=https://gist.github.com/AarynSmith/03dae2ec1c729891a13d6647cfb34155#file-main_test-go target=_blank rel="noopener noreffer">main_test.go</a> from this post.</p></div><div class=post-footer id=post-footer>
-<div class=post-info>
-<div class=post-info-line>
-<div class=post-info-mod>
-<span>Updated on 2018-05-01</span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
-<div class=post-info-md></div>
-<div class=post-info-share>
-<span></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go/>Go</a>,&nbsp;<a href=/tags/rest/>REST</a>,&nbsp;<a href=/tags/api/>api</a></section>
-<section>
-<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
-</section>
-</div><div class=post-nav><a href=/posts/go-rest-api-part-3/ class=prev rel=prev title="Go REST API (Part 3)"><i class="fas fa-angle-left fa-fw"></i>Go REST API (Part 3)</a>
-<a href=/posts/project-euler-1-3/ class=next rel=next title="Project Euler 1 - 3">Project Euler 1 - 3<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div>
-</main><footer class=footer>
-<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
-<i class="fas fa-arrow-up fa-fw"></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments">
-<i class="fas fa-comment fa-fw"></i>
-</a>
-</div><link rel=stylesheet href=/lib/katex/katex.min.4710034e669c7ff17f823f9ba12cf8a36582d65b007f79cbc4a3c11d7db2e4ca.css integrity="sha256-RxADTmacf/F/gj+boSz4o2WC1lsAf3nLxKPBHX2y5Mo="><link rel=stylesheet href=/lib/katex/copy-tex.min.bf9ff4137fec38f6255419e142d0883c9c52090885d746f80eee12b273d9b3e0.css integrity="sha256-v5/0E3/sOPYlVBnhQtCIPJxSCQiF10b4Du4SsnPZs+A="><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript src=/lib/katex/katex.min.17f5dd6b9f123dd7140abfb18521b3f4c036cd004f6f40121182a8865f140877.js integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc="></script><script type=text/javascript src=/lib/katex/auto-render.min.f74776a677f0d2be0af0264058f928e2ba455d0b19bc985304660d922a43a6b2.js integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI="></script><script type=text/javascript src=/lib/katex/copy-tex.min.2ab2237329021bc443986c8327f6e61357fb68a54e5d233d224023718c02207d.js integrity="sha256-KrIjcykCG8RDmGyDJ/bmE1f7aKVOXSM9IkAjcYwCIH0="></script><script type=text/javascript src=/lib/katex/mhchem.min.5cea356d6025c5a2f18c454c83ec5674dbb04fab1cd1d75569e77788c6b6f888.js integrity="sha256-XOo1bWAlxaLxjEVMg+xWdNuwT6sc0ddVaed3iMa2+Ig="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"$$",right:"$$"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"},{display:!1,left:"$",right:"$"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body>
-</html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go <span class=nb>test</span> --cover
+</span></span><span class=line><span class=cl>PASS
+</span></span><span class=line><span class=cl>coverage: 90.6% of statements
+</span></span><span class=line><span class=cl>ok      github.com/<span class=o>{</span>username<span class=o>}</span>/go-rest-api       0.007s
+</span></span></code></pre></td></tr></table></div></div><p>Fantastic,we&rsquo;re covering 90% of our code. So we&rsquo;ve built a REST API server in Go, setup endpoints and tested those endpoints. Have I missed anything? Feel free to send me a message from the links below.</p><p>Here is a gist of our <a href=https://gist.github.com/AarynSmith/03dae2ec1c729891a13d6647cfb34155#file-main-go target=_blank rel="noopener noreffer">main.go</a> and <a href=https://gist.github.com/AarynSmith/03dae2ec1c729891a13d6647cfb34155#file-main_test-go target=_blank rel="noopener noreffer">main_test.go</a> from this post.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2018-05-01</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go/>Go</a>,&nbsp;<a href=/tags/rest/>REST</a>,&nbsp;<a href=/tags/api/>api</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/go-rest-api-part-3/ class=prev rel=prev title="Go REST API (Part 3)"><i class="fas fa-angle-left fa-fw"></i>Go REST API (Part 3)</a>
+<a href=/posts/project-euler-1-3/ class=next rel=next title="Project Euler 1 - 3">Project Euler 1 - 3<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Aaryn Smith</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.4710034e669c7ff17f823f9ba12cf8a36582d65b007f79cbc4a3c11d7db2e4ca.css integrity="sha256-RxADTmacf/F/gj+boSz4o2WC1lsAf3nLxKPBHX2y5Mo="><link rel=stylesheet href=/lib/katex/copy-tex.min.bf9ff4137fec38f6255419e142d0883c9c52090885d746f80eee12b273d9b3e0.css integrity="sha256-v5/0E3/sOPYlVBnhQtCIPJxSCQiF10b4Du4SsnPZs+A="><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js integrity="sha256-vP+F+14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.fb649fcae62177dfe63e67081ddceb830b5ce1f05a4184e9bbb7d87ac4b8f4e5.js integrity="sha256-+2SfyuYhd9/mPmcIHdzrgwtc4fBaQYTpu7fYesS49OU="></script><script type=text/javascript src=/lib/clipboard/clipboard.min.8a7739925f4c03586479852df840b7061948832a7fda30c8c812d2ea4dd4c4f2.js integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI="></script><script type=text/javascript src=/lib/katex/katex.min.17f5dd6b9f123dd7140abfb18521b3f4c036cd004f6f40121182a8865f140877.js integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc="></script><script type=text/javascript src=/lib/katex/auto-render.min.f74776a677f0d2be0af0264058f928e2ba455d0b19bc985304660d922a43a6b2.js integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI="></script><script type=text/javascript src=/lib/katex/copy-tex.min.2ab2237329021bc443986c8327f6e61357fb68a54e5d233d224023718c02207d.js integrity="sha256-KrIjcykCG8RDmGyDJ/bmE1f7aKVOXSM9IkAjcYwCIH0="></script><script type=text/javascript src=/lib/katex/mhchem.min.5cea356d6025c5a2f18c454c83ec5674dbb04fab1cd1d75569e77788c6b6f888.js integrity="sha256-XOo1bWAlxaLxjEVMg+xWdNuwT6sc0ddVaed3iMa2+Ig="></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:1e3},comment:{},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"$$",right:"$$"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"},{display:!1,left:"$",right:"$"}],strict:!1}}</script><script type=text/javascript src=/js/theme.min.f51938f3065a40ee841bcb558e4330e31fd26c0ea55343fff8770b88b0319a3c.js integrity="sha256-9Rk48wZaQO6EG8tVjkMw4x/SbA6lU0P/+HcLiLAxmjw="></script></body></html>
