@@ -92,6 +92,7 @@
                                 {{ end }}
                             </section>
                             {{ end }}
+                            
                             {{ if $.Param "information.enable" }}
                             <section class="project-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Information</h3>
@@ -114,7 +115,6 @@
                                 {{ end }}
                             </section>
                             {{ end }}
-
                             {{ if $.Param "projects.enable" }}
                             <section class="project-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
@@ -134,26 +134,13 @@
                                 {{ end }}
                             </section>
                             {{ end }}
+             
 
                         </div>
                         <!--//resume-main-->
 
                         <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
-                            {{ if $.Param "certificates.enable" }}
-                            <section class="certificates-section py-3">
-                                <h3 class="text-uppercase resume-section-heading mb-4">
-                                    certificates</h3>
-                                <ul class="list-unstyled resume-certificates-list">
-                                    {{ range $.Param "certificates.list" }}
-                                    <li class="mb-3">
-                                        <div class="resume-certificate font-weight-bold">{{ .certificate }}</div>
-                                        <div class="resume-certificate-org text-muted">{{ .organization }}</div>
-                                        <div class="resume-certificate-time text-muted">{{ .dates }}</div>
-                                    </li>
-                                    {{ end }}
-                                </ul>
-                            </section>
-                            {{ end }}
+                         
                             {{ if $.Param "education.enable" }}
                             <section class="education-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">
@@ -162,6 +149,9 @@
                                     {{ range $.Param "education.list" }}
                                     <li class="mb-3">
                                         <div class="resume-degree font-weight-bold">{{ .degree }}</div>
+                                        {{ if .gpa }}
+                                        <div class="resume-degree font-weight-bold">{{.gpa}} GPA</div>
+                                        {{ end }}
                                         <div class="resume-degree-org text-muted">{{ .university }}</div>
                                         <div class="resume-degree-time text-muted">{{ .dates }}</div>
                                     </li>
@@ -179,6 +169,21 @@
                                         <div class="font-weight-bold">{{ .name }}</div>
                                         <div class="text-muted">{{ .body }}</div>
                                         <div class="text-muted">{{ .date }}</div>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </section>
+                            {{ end }}
+                            {{ if $.Param "certificates.enable" }}
+                            <section class="certificates-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">
+                                    certificates</h3>
+                                <ul class="list-unstyled resume-certificates-list">
+                                    {{ range $.Param "certificates.list" }}
+                                    <li class="mb-3">
+                                        <div class="resume-certificate font-weight-bold">{{ .certificate }}</div>
+                                        <div class="resume-certificate-org text-muted">{{ .organization }}</div>
+                                        <div class="resume-certificate-time text-muted">{{ .dates }}</div>
                                     </li>
                                     {{ end }}
                                 </ul>
@@ -259,9 +264,9 @@
                 Thank you for your support. :)
                 If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com
             */-->
-            <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link"
+            <!-- <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link"
                     href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-            <br>
+            <br> -->
             <small class="copyright">{{ now.Year }} &copy;
                 {{ with $.Param "footer.copyright"  }}{{ . | markdownify }}{{ else }}Ported to Hugo by <a
                     href="https://github.com/cowboysmall" target="_blank">CowboySmall</a>{{ end }}</small>
