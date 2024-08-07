@@ -59,12 +59,13 @@ experience:
         - details: Continuously improving skills and adapting to evolving industry standards
     - title: Household Manager
       dates: 2018-2023
+      company: Smith Household
       items: 
-        - details: Managed household operations, including scheduling, logistics, and coordination of famiily activities.
+        - details: Managed household operations, including scheduling, logistics, and coordination of family activities.
         - details: Developed and implemented organizational systems to streamline daily tasks and improve efficiency.
         - details: Enhanced interpersonal skills through effective communication and conflict resolution.
         - details: Maintained a balanced household environment through multitasking and prioritization of tasks.
-        - details: Pursued professional development through online courses in Web and Application development.
+        - details: Pursued professional development through online courses in Web and Application development, including a Master's degree in Information Technology.
     - title: Developer/Network Administrator/Systems Analyst
       dates: 2009-2018
       company: HFSI
