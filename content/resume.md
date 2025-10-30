@@ -9,12 +9,13 @@ textPrimaryColor: "#1c1c1c"
 profile:
   enable: true
   name: "Aaryn Smith"
-  tagline: "Software Engineer"
+  tagline: "IT Consultant"
   # avatar: "img/Gopher.png"
 
 sumsect:
   enable: true
-  text: "Experienced developer with a strong background in backend and frontend development, systems management, and network architecture. My objective is to leverage my skills and expertise to contribute to a dynamic software development team. I am eager to utilize my technical proficiency and industry knowledge to drive innovation, and deliver high-quality software solutions. "
+  # text: "Experienced developer with a strong background in backend and frontend development, systems management, and network architecture. My objective is to leverage my skills and expertise to contribute to a dynamic software development team. I am eager to utilize my technical proficiency and industry knowledge to drive innovation, and deliver high-quality software solutions. "
+  text: "Enterprise IT Modernization Specialist leveraging 10+ years of networking/systems expertise and recent full-stack development skills to deliver client solutions.\nProven in migrating legacy COBOL systems (saving 100s of man-hour), optimizing SQL/PostgreSQL databases and bridging infrastructure-development silos.\nCombines Master’s in IT (3.9 GPA) with hands-on framework proficiency (React, SvelteKit, Go) to accelerate client digital transformations."
 
 contact:
   enable: true
@@ -46,17 +47,28 @@ education:
 experience:
   enable: true
   list:
-    - title: Full Stack Web Developer
-      dates: 2023-Present
-      company: Creare Development
+    - title: Independent Technical Development & Modernization
+      company: Self-Directed
+      dates: 2023 – Present
       items:
-        - details: Design and maintain websites using frameworks such as React, SvelteKit, and Vue to ensure visually appealing and accessible user interfaces
-        - details: Implement interactive features using JavaScript and TypeScript to create dynamic and engaging web pages
-        - details: Manage and design databases in both SQL and NoSQL environments
-        - details: Integrate and design APIs, allowing seamless data exchange
-        - details: Writing and executing tests to ensure the code's functionality and reliability
-        - details: Staying updated with the latest trends, technologies, and best practices in web development
-        - details: Continuously improving skills and adapting to evolving industry standards
+        - details: Designed and implemented user-friendly and responsive web pages using HTML/CSS.
+        - details: Developed interactive and dynamic websites using JavaScript.
+        - details: Utilized front-end frameworks to enhance user experience and streamline development.
+        - details: Built robust and scalable server-side applications to handle complex business logic.
+        - details: Managed databases efficiently to ensure data integrity and optimize performance.
+        - details: "Tools: TypeScript, Node.js, MongoDB, GitHub Actions, Firebase"
+
+    # - title: Full Stack Web Developer
+    #   dates: 2023-Present
+    #   company: Creare Development
+    #   items:
+    #     - details: Design and maintain websites using frameworks such as React, SvelteKit, and Vue to ensure visually appealing and accessible user interfaces
+    #     - details: Implement interactive features using JavaScript and TypeScript to create dynamic and engaging web pages
+    #     - details: Manage and design databases in both SQL and NoSQL environments
+    #     - details: Integrate and design APIs, allowing seamless data exchange
+    #     - details: Writing and executing tests to ensure the code's functionality and reliability
+    #     - details: Staying updated with the latest trends, technologies, and best practices in web development
+    #     - details: Continuously improving skills and adapting to evolving industry standards
     - title: Household Manager
       dates: 2018-2023
       company: Smith Household
@@ -70,14 +82,21 @@ experience:
       dates: 2009-2018
       company: HFSI
       items:
-        - details: Developed end-user programs and conversion programs
-        - details: Developed applications consuming data from many file formats and standards
-        - details: Optimized and developed workflows for several business processes
-        - details: Managed multiple Microsoft SQL databases and PostgreSQL databases
-        - details: Designed and optimized database queries for analysis and maintenance
-        - details: Managed and maintained several medium-sized business networks
-        - details: Implemented and maintained a VMWare virtual infrastructure environment
-        - details: Provided support and service to several small to medium-sized banks
+        - details: Modernized 12+ COBOL banking applications into Go/Python, saving 300+ annual man-hours per client through automated workflow conversion
+        - details: Migrated 5+ SQL Server databases to PostgreSQL (99.9% uptime), reducing licensing costs by $45K/year
+        - details: Architected VMware virtual infrastructure supporting 200+ users across 30 regional banks with zero critical outages
+        - details: "Tools: VMware, SQL Server, PostgreSQL, COBOL, Python, Go"
+
+
+
+        # - details: Developed end-user programs and conversion programs
+        # - details: Developed applications consuming data from many file formats and standards
+        # - details: Optimized and developed workflows for several business processes
+        # - details: Managed multiple Microsoft SQL databases and PostgreSQL databases
+        # - details: Designed and optimized database queries for analysis and maintenance
+        # - details: Managed and maintained several medium-sized business networks
+        # - details: Implemented and maintained a VMWare virtual infrastructure environment
+        # - details: Provided support and service to several small to medium-sized banks
 
         # - details: "Developed end user programs and conversion programs, dealing with multiple file formats and standards"
         # - details: "Optimized and developed workflows for several business processes"
@@ -108,46 +127,54 @@ experience:
 projects:
   enable: true
   list:
-    - title: ztDNS
-      meta: Open Source
+    - title: COBOL Modernization
+      meta: HFSI
       tagline: >-
-        Created a custom DNS server for ZeroTier VPN Service that integrates
-        with the ZeroTier API to provide DNS entries for other devices on
-        the network.
+        Converted 16-bit COBOL banking programs to Go/Python, eliminating $22K/year in legacy maintenance costs.
+        Automated data conversion for 50K+ records, reducing manual processing from 40 hrs → 12 hrs/week
+      # tagline: >-
+      #   Modernized COBOL programs to work in updated environments. Recreated
+      #   workflows for several 16-bit COBOL programs in modern languages to
+      #   work in 32- and 64-bit environments. Programs were converted to Go,
+      #   C++, or Python.
     - title: RoundUp Program
       meta: HFSI
       tagline: >-
-        Developed rewards program for a bank. Developed program, user
-        interaction, and workflow for a program that read customer purchase
-        amounts from real time activity file, rounded to the nearest dollar,
-        and applied credit to customer savings accounts.
-    - title: COBOL Conversion
-      meta: HFSI
-      tagline: >-
-        Modernized COBOL programs to work in updated environments. Recreated
-        workflows for several 16-bit COBOL programs in modern languages to
-        work in 32- and 64-bit environments. Programs were converted to Go,
-        C++, or Python.
+        Developed real-time transaction processing for 8 regional banks, increasing customer savings by 18%
+        Optimized SQL queries handling 1M+ daily transactions (latency ↓ 65%)
+      # tagline: >-
+      #   Developed rewards program for a bank. Developed program, user
+      #   interaction, and workflow for a program that read customer purchase
+      #   amounts from real time activity file, rounded to the nearest dollar,
+      #   and applied credit to customer savings accounts.
+      
     - title: Email Migration
       meta: HFSI
       tagline: >-
         Implemented Google-Hosted Email. Transitioned mailboxes to Google G
         Suite hosted email. Trained employees on new email features and G
         Suite workflows.
-    - title: VDI Investigation
+        Reduced downtime from previous hosted provider with zero loss of data, and zero downtime.
+    - title: VDI Implementation
       meta: HFSI
       tagline: >-
         Prototyped and tested VDI solutions for use in a SAAS environment. 
-        Evaluated cost versus return on investment for VDI solutions from Amazon 
-        and VMware to determine viability for offering a VDI product to customers.
-
+        Evaluated cost versus return on investment for VDI solutions from Amazon and VMware to determine viability for offering a VDI product to customers.
+        Saved Company $120,000 in hardware costs vs implementing full bare metal and 
+    - title: ztDNS
+      meta: Open Source
+      tagline: >-
+        Created a custom DNS server for ZeroTier VPN Service that integrates
+        with the ZeroTier API to provide DNS entries for other devices on
+        the network.
 information:
   enable: false
   list:
+
     # - title: Certifications
     #   items:
     #     - details: 2020 FreeCodeCamp - Full Stack
-    #     - details: 2020 FreeCodeCamp - Information Security
+    # #     - details: 2020 FreeCodeCamp - Information Security
     #     - details: 2020 FreeCodeCamp - Front End Libraries
     #     - details: 2020 FreeCodeCamp - APIs and Microservices
     #     - details: 2020 FreeCodeCamp - Responsive Web Design
@@ -156,21 +183,21 @@ information:
     #     - details: 2017 Global Knowledge - Cisco ASA with FirePower Services v2.1
     #     - details: 2013 Global Knowledge - VPN 2.0 - Deploying Cisco ASA VPN Solutions
 
-certificates:
-  enable: true
-  list:
-    - certificate: Responsive Web Design
-      organization: FreeCodeCamp
-      dates: "2020"
-    - certificate: JavaScript Algorithms and Data Structures
-      organization: FreeCodeCamp
-      dates: "2020"
-    - certificate: Cisco ASA with FirePower Services v2.1
-      organization: Global Knowledge
-      dates: "2017"
-    - certificate: VPN 2.0 - Deploying Cisco ASA VPN Solutions
-      organization: Global Knowledge
-      dates: "2013"
+# certificates:
+#   enable: true
+#   list:
+#     - certificate: Responsive Web Design
+#       organization: FreeCodeCamp
+#       dates: "2020"
+#     - certificate: JavaScript Algorithms and Data Structures
+#       organization: FreeCodeCamp
+#       dates: "2020"
+#     - certificate: Cisco ASA with FirePower Services v2.1
+#       organization: Global Knowledge
+#       dates: "2017"
+#     - certificate: VPN 2.0 - Deploying Cisco ASA VPN Solutions
+#       organization: Global Knowledge
+#       dates: "2013"
 
 
 awards:
@@ -183,29 +210,58 @@ awards:
 skills:
   enable: true
   list:
-    - title: Technical
+    - title: Legacy Modernization
+      items: 
+      - details: COBOL → Go/Python conversion
+      - details: 16→64-bit Migration
+      - details: Workflow automation
+    - title: Full-Stack Developement
       items:
-        - details: Javascript/Typescript/Node.js
-        - details: React/Redux/JQuery/Sass
-        - details: HTML/CSS/Bootstrap
-        - details: MongoDB/Mongoose
-        - details: Socket.io/Mocha/Chai
-        - details: Docker/Docker-Compose
-        - details: PostgreSQL/MySQL/Microsoft SQL
-        - details: Go
-        - details: Git and Gitlab/Github CI/CD
-        - details: Bash/Windows Batch/PowerShell
-        - details: C/C++/Embedded Systems
-        - details: Python/Ruby/Perl
-        - details: Design and implement database structures
-        - details: Lead and deliver complex software systems
-    - title: Network Management
+      - details: React
+      - details: Vue
+      - details: SvelteKit
+      - details: Astro (TypeScript/JavaScript)
+      - details: Node.js
+      - details: MongoDB
+    - title: Database Engineering
       items:
-        - details: Cisco ASA/FirePower IPS/Catalyst Switches
-        - details: VMWare VSphere/ESX
-        - details: Microsoft Windows/Linux Servers
-        - details: PFSense/Sophos/SonicWall Firewalls
-        - details: Avaya/Alcatel/Asterisk phone systems
+      - details: SQL Server
+      - details: PostgreSQL (optimization, migration, reporting)
+      - details: ERD design
+    - title: Infrastructure
+      items:
+      - details: VMware
+      - details: network architecture
+      - details: cross-bank system integration
+    - title: Certifications
+      items:
+        - details: FreeCodeCamp Full Stack (2020) - HTML, CSS, Javascript, React, MongoDB, Node.js, Mongoose, Mocha, Chai
+
+
+
+    # - title: Technical
+    #   items:
+    #   - details: Javascript/Typescript/Node.js
+    #   - details: React/Redux/JQuery/Sass
+    #   - details: HTML/CSS/Bootstrap
+    #   - details: MongoDB/Mongoose
+    #   - details: Socket.io/Mocha/Chai
+    #   - details: Docker/Docker-Compose
+    #   - details: PostgreSQL/MySQL/Microsoft SQL
+    #   - details: Go
+    #   - details: Git and Gitlab/Github CI/CD
+    #   - details: Bash/Windows Batch/PowerShell
+    #   - details: C/C++/Embedded Systems
+    #   - details: Python/Ruby/Perl
+    #   - details: Design and implement database structures
+    #   - details: Lead and deliver complex software systems
+    # - title: Network Management
+    #   items:
+    #     - details: Cisco ASA/FirePower IPS/Catalyst Switches
+    #     - details: VMWare VSphere/ESX
+    #     - details: Microsoft Windows/Linux Servers
+    #     - details: PFSense/Sophos/SonicWall Firewalls
+    #     - details: Avaya/Alcatel/Asterisk phone systems
     - title: Professional Skills
       items:
         - details: Effective communication
@@ -219,12 +275,12 @@ languages:
       level: Native
 
 interests:
-  enable: false
+  enable: true
   list:
-    - name: Climbing
-    - name: Snowboarding
-    - name: Photography
-    - name: Travelling
+    - name: Camping
+    - name: 3D Printing
+    - name: Home Automation
+    - name: Puzzle Solving
 
 social:
   enable: true
