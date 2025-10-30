@@ -8,12 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content='{{ $.Param "description" }}'>
-    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta name="author" content="{{ .Site.Params.Author.name }}">
     <link rel="shortcut icon" href="favicon.ico">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900">
     <!-- Theme SCSS -->
-    {{ $style := resources.Get "scss/devresume.scss" | resources.ExecuteAsTemplate "scss/devresume.scss" . | toCSS (dict "targetPath" "assets/css/devresume.css") | minify | fingerprint }}
+    {{ $style := resources.Get "scss/devresume.scss" | resources.ExecuteAsTemplate "scss/devresume.scss" . | toCSS (dict
+    "targetPath" "assets/css/devresume.css") | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
 </head>
 
@@ -37,8 +38,8 @@
                                 <li class="mb-2"><i class="{{ .icon }} fa-fw fa-lg mr-2"></i><a class="resume-link"
                                         href="{{ .url | safeURL }}">{{ .text }}</a></li>
                                 {{ end }}
-                                <li class="mb-0"><i
-                                        class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>{{ $.Param "contact.location" }}
+                                <li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>{{ $.Param
+                                    "contact.location" }}
                                 </li>
                             </ul>
                         </div>
@@ -92,7 +93,7 @@
                                 {{ end }}
                             </section>
                             {{ end }}
-                            
+
                             {{ if $.Param "information.enable" }}
                             <section class="project-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Information</h3>
@@ -134,13 +135,13 @@
                                 {{ end }}
                             </section>
                             {{ end }}
-             
+
 
                         </div>
                         <!--//resume-main-->
 
                         <aside class="resume-aside col-12 col-lg-4 col-xl-3 px-lg-4 pb-lg-4">
-                         
+
                             {{ if $.Param "education.enable" }}
                             <section class="education-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">
@@ -268,7 +269,7 @@
                     href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
             <br> -->
             <small class="copyright">{{ now.Year }} &copy;
-                {{ with $.Param "footer.copyright"  }}{{ . | markdownify }}{{ else }}Ported to Hugo by <a
+                {{ with $.Param "footer.copyright" }}{{ . | markdownify }}{{ else }}Ported to Hugo by <a
                     href="https://github.com/cowboysmall" target="_blank">CowboySmall</a>{{ end }}</small>
         </footer>
     </div>
