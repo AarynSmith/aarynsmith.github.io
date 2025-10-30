@@ -25,11 +25,6 @@ theme = "LoveIt"
     url = "/projects/"
     weight = 30
 
-[author]
-  name = "Aaryn Smith"
-  email = "aarynsmith<at>gmail.com"
-
-
 [params]
   version = "0.2.X"
   description = "Aaryn Smith"
@@ -45,6 +40,11 @@ theme = "LoveIt"
   dateFormat = "2006-01-02"
   # website images for Open Graph and Twitter Cards
   images = ["/logo.png"]
+
+  [params.author]
+    name = "Aaryn Smith"
+    email = "aarynsmith<at>gmail.com"
+
 
  # LoveIt NEW | 0.2.5 TypeIt config
   [params.typeit]
