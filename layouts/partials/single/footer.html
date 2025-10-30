@@ -6,7 +6,7 @@
             <div class="post-info-mod">
                 <span>
                     {{- with .Site.Params.dateformat | default "2006-01-02" | .Lastmod.Format -}}
-                    {{- dict "Date" . | T "updatedOnDate" -}}
+                    <!-- {{- dict "Date" . | T "updatedOnDate" -}} -->
                     {{- if $.Site.Params.gitRepo -}}
                     {{- with $.GitInfo -}}
                     &nbsp;<a class="git-hash" href="{{ printf `%v/commit/%v` $.Site.Params.gitRepo .Hash }}"
@@ -59,9 +59,8 @@
             {{- end -}}
         </section>
         <section>
-            <span><a href="javascript:void(0);"
-                    onclick="window.history.back();">{{ T "back" }}</a></span>&nbsp;|&nbsp;<span><a
-                    href="{{ .Site.Home.RelPermalink }}">{{ T "home" }}</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">{{ T "back"
+                    }}</a></span>&nbsp;|&nbsp;<span><a href="{{ .Site.Home.RelPermalink }}">{{ T "home" }}</a></span>
         </section>
     </div>
 
@@ -72,8 +71,8 @@
                 class="fas fa-angle-left fa-fw"></i>{{ .PrevInSection.Title }}</a>
         {{- end -}}
         {{ if .NextInSection }}
-        <a href="{{ .NextInSection.RelPermalink }}" class="next" rel="next"
-            title="{{ .NextInSection.Title }}">{{ .NextInSection.Title }}<i class="fas fa-angle-right fa-fw"></i></a>
+        <a href="{{ .NextInSection.RelPermalink }}" class="next" rel="next" title="{{ .NextInSection.Title }}">{{
+            .NextInSection.Title }}<i class="fas fa-angle-right fa-fw"></i></a>
         {{- end -}}
     </div>
     {{- end -}}

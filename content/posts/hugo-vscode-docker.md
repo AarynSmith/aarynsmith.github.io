@@ -29,7 +29,7 @@ math:
 In a recent attempt to dockerize anything I can, I came across a new feature of VSCode Remote Containers.
 <!--more-->
 
-## Updates (20200710)
+## Update
 
 My pull request was accepted (Thanks [Chuck](https://github.com/Chuxel)!) and since then I've also created containers for [bash script debugging](https://github.com/AarynSmith/vscode-dev-container-bash) and [Vue.js development](https://github.com/AarynSmith/vscode-dev-container-vue) have also been merged, and should be available soon. To use these, open a folder in VSCode, open your Command Palette, and choose "Remote-Containers: Add Development Container Configuration Files". From here you can choose "Show all Definitions..." and search through all available definitions.
 
