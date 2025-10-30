@@ -13,4 +13,6 @@ I received my Bachelors in Science in Network Communications and Management, whi
 
 My first open source project is [ztDNS](https://github.com/uxbh/ztdns), a DNS server for use on a [ZeroTier](https://zerotier.com/) network (or networks). It integrates with the ZeroTier REST API to pull device names from a network configuration to serve as A and AAAA DNS records.
 
-I am currently looking for a remote position, but am open to onsite opportunities in the DFW metroplex. My wife and I live in a multi-generational home where we have all learned, since COVID-19, to balance work and young children while still being productive workers.
+Since COVID-19, I have been a Stay-At-Home Dad, Freelance Web-devloper, and Student, earning my Master's degree in Information Technology with a concentration in software application development in 2023.
+
+I am currently looking for a remote development position, but am open to onsite developement or consulting opportunities in the DFW metroplex.
